@@ -25,39 +25,18 @@ MonoBehaviour:
     Errored: 0
   - FileName: BuzzSawBT.xml
     BehaviorTreeName: BuzzSawBT
-    BehaviorTreeID: 11
-    LastUpdate: 634979136299002200
-    LastModified: 634979136299002200
+    BehaviorTreeID: 10
+    LastUpdate: 634980011176886530
+    LastModified: 634980011170000000
+    Errored: 0
+  - FileName: BuzzsawBT 1.xml
+    BehaviorTreeName: BuzzsawBT 1
+    BehaviorTreeID: 9
+    LastUpdate: 634980011286852650
+    LastModified: 634980011280000000
     Errored: 0
   TreeState:
     _branchRepo:
-    - _fields: []
-      _type: 0
-      _id: 0
-      _parent: 0
-      _reference: 0
-      _referencedCount: 0
-      _lastUpdate: 0
-      _children: 
-      _variables: 
-    - _fields: []
-      _type: 0
-      _id: 0
-      _parent: 0
-      _reference: 0
-      _referencedCount: 0
-      _lastUpdate: 0
-      _children: 
-      _variables: 
-    - _fields: []
-      _type: 0
-      _id: 0
-      _parent: 0
-      _reference: 0
-      _referencedCount: 0
-      _lastUpdate: 0
-      _children: 
-      _variables: 
     - _fields: []
       _type: 0
       _id: 0
@@ -152,11 +131,11 @@ MonoBehaviour:
         _recordChange: 1
         _changed: 0
       _type: 12
-      _id: 7
-      _parent: 9
+      _id: 4
+      _parent: 6
       _reference: 0
       _referencedCount: 0
-      _lastUpdate: 634979136288981626
+      _lastUpdate: 634980011166756810
       _children: 
       _variables: 
     - _fields:
@@ -189,11 +168,11 @@ MonoBehaviour:
         _recordChange: 1
         _changed: 0
       _type: 9
-      _id: 8
-      _parent: 9
+      _id: 5
+      _parent: 6
       _reference: 0
       _referencedCount: 0
-      _lastUpdate: 634979136278201010
+      _lastUpdate: 0
       _children: 
       _variables: 
     - _fields:
@@ -230,12 +209,12 @@ MonoBehaviour:
         _recordChange: 1
         _changed: 0
       _type: 13
-      _id: 9
-      _parent: 11
+      _id: 6
+      _parent: 10
       _reference: 0
       _referencedCount: 0
-      _lastUpdate: 634977654526213262
-      _children: 0800000007000000
+      _lastUpdate: 634980011166746400
+      _children: 0500000004000000
       _variables: 
     - _fields: []
       _type: 0
@@ -248,11 +227,40 @@ MonoBehaviour:
       _variables: 
     - _fields:
       - _field: name
-        _currentValue: BuzzSawBT
+        _currentValue: root
         _recordChange: 1
         _changed: 0
       - _field: open
+        _currentValue: True
+        _recordChange: 0
+        _changed: 0
+      - _field: repeatuntil
+        _currentValue: 
+        _recordChange: 1
+        _changed: 0
+      - _field: precondition
+        _currentValue: 
+        _recordChange: 1
+        _changed: 0
+      - _field: debug
         _currentValue: False
+        _recordChange: 1
+        _changed: 0
+      _type: 17
+      _id: 8
+      _parent: 9
+      _reference: 0
+      _referencedCount: 0
+      _lastUpdate: 0
+      _children: 
+      _variables: 
+    - _fields:
+      - _field: name
+        _currentValue: BuzzsawBT 1
+        _recordChange: 1
+        _changed: 0
+      - _field: open
+        _currentValue: True
         _recordChange: 0
         _changed: 0
       - _field: repeatuntil
@@ -272,12 +280,45 @@ MonoBehaviour:
         _recordChange: 1
         _changed: 0
       _type: 5
-      _id: 11
+      _id: 9
       _parent: 0
       _reference: 0
       _referencedCount: 0
-      _lastUpdate: 634979136288981626
-      _children: 09000000
+      _lastUpdate: 634980011286852560
+      _children: 08000000
       _variables: 
-    _freeList: 0100000002000000030000000400000005000000060000000a000000
+    - _fields:
+      - _field: name
+        _currentValue: BuzzSawBT
+        _recordChange: 1
+        _changed: 0
+      - _field: open
+        _currentValue: True
+        _recordChange: 0
+        _changed: 0
+      - _field: repeatuntil
+        _currentValue: 
+        _recordChange: 1
+        _changed: 0
+      - _field: precondition
+        _currentValue: 
+        _recordChange: 1
+        _changed: 0
+      - _field: debug
+        _currentValue: False
+        _recordChange: 1
+        _changed: 0
+      - _field: variablesopen
+        _currentValue: False
+        _recordChange: 1
+        _changed: 0
+      _type: 5
+      _id: 10
+      _parent: 0
+      _reference: 0
+      _referencedCount: 0
+      _lastUpdate: 634980011166756810
+      _children: 06000000
+      _variables: 
+    _freeList: 01000000020000000300000007000000
   Version: 13

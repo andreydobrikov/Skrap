@@ -22,14 +22,11 @@ public class GatlingGun : Weapon
 			Ray r = new Ray(bulletOrigin.position, bulletOrigin.forward);
 
 			List<RewinderHitboxHit> hits = new List<RewinderHitboxHit>();
-			Debug.Log("Local Time: " + TimeSpan.FromSeconds(Time.time).TotalMilliseconds + " Photon time: " + (float)PhotonNetwork.time + " Latest snapshot time: " + RewinderSnapshot.Latest.Time);
 			RewinderSnapshot.Raycast(Time.time, r.origin, r.direction, out hits);
-			Debug.DrawRay(r.origin, r.direction, Color.green, 30.0f);
 
 			if (hits.Count > 0)
 			{
 				FireOnHit(hits);
-				//RewinderSnapshot.Recycle(hits);	
 			}
 		}
 	}

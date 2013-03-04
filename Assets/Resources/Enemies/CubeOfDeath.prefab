@@ -586,7 +586,7 @@ MonoBehaviour:
   m_Script: {fileID: -1456383791, guid: 6341f308145306047b757d395c025251, type: 3}
   m_Name: 
   rainVersionString: RAIN.Minds.BehaviorTreeMind 1.3.1.30910
-  behaviorTreeFilename: BuzzSawBT
+  behaviorTreeFilename: SimpleFollow
   rootName: root
 --- !u!135 &13500000
 SphereCollider:

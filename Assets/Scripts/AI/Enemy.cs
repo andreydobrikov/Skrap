@@ -44,8 +44,6 @@ public class Enemy : MonoBehaviour
 	{
 		health -= damageAmount;
 
-		Debug.Log("Damage was applied: " + damageAmount + " Health is now: " + health);
-
 		if(health <= 0)
 		{
 			GetComponent<SpawnAI>().Remove();
