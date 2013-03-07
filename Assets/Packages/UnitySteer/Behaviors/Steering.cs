@@ -41,17 +41,22 @@ public abstract class Steering : MonoBehaviour {
 			_force = CalculateForce();
 			if (_force != Vector3.zero)
 			{
-				if (!ReportedMove && OnStartMoving != null)
+				if (!ReportedStartMoving && OnStartMoving != null)
 				{
-					OnStartMoving(new SteeringEvent<Vehicle>(this, "moving", Vehicle));
+					OnStartMoving(new SteeringEvent<Vehicle>(this, "startMoving", Vehicle));
 				}
 				ReportedArrival = false;
-				ReportedMove = true;
+				ReportedStartMoving = true;
+				
+				if (OnMoving != null)
+				{
+					OnMoving(new SteeringEvent<Vehicle>(this, "moving", Vehicle));
+				}
 			}
 			else if (!ReportedArrival)
 			{
 				ReportedArrival = true;
-				ReportedMove = false;
+				ReportedStartMoving = false;
 				if (OnArrival != null)
 				{
 					var message = new SteeringEvent<Vehicle>(this, "arrived", Vehicle);
@@ -76,12 +81,18 @@ public abstract class Steering : MonoBehaviour {
 	/// <summary>
 	/// Steering event handler for arrival notification
 	/// </summary>
-	public SteeringEventHandler<Vehicle> OnArrival { get; set; }
+	public System.Action<SteeringEvent<Vehicle>> OnArrival = delegate{};
 	
 	/// <summary>
-	/// Steering event handler for arrival notification
+	/// Steering event handler for start moving notification
 	/// </summary>
-	public SteeringEventHandler<Vehicle> OnStartMoving { get; set; }
+	public System.Action<SteeringEvent<Vehicle>> OnStartMoving { get; set; }
+	
+	/// <summary>
+	/// Steering event handler for moving notification. That is, if the 
+	/// calculated forece is not equal to Vector3.zero.
+	/// </summary>
+	public System.Action<SteeringEvent<Vehicle>> OnMoving { get; set; }
 	
 	/// <summary>
 	/// Have we reported that we stopped moving?
@@ -91,7 +102,7 @@ public abstract class Steering : MonoBehaviour {
 	/// <summary>
 	/// Have we reported that we began moving?
 	/// </summary>
-	public bool ReportedMove { get; protected set; }
+	public bool ReportedStartMoving { get; protected set; }
 	
 	
 	/// <summary>
@@ -125,10 +136,14 @@ public abstract class Steering : MonoBehaviour {
 	#endregion
 	
 	#region Methods
-	protected void Start()
+	protected virtual void Awake()
 	{
 		_vehicle = this.GetComponent<Vehicle>();
 		ReportedArrival = true; // Default to true to avoid unnecessary notifications
+	}
+	
+	protected virtual void Start()
+	{
 	}
 	
 	/// <summary>
@@ -137,10 +152,7 @@ public abstract class Steering : MonoBehaviour {
 	/// <returns>
 	/// A vector with the desired force <see cref="Vector3"/>
 	/// </returns>
-	protected virtual Vector3 CalculateForce()
-	{
-		return Vector3.zero;
-	}
+	protected abstract Vector3 CalculateForce();
 	
 
 	#endregion

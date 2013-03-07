@@ -20,6 +20,7 @@ GameObject:
   - 114: {fileID: 11400010}
   - 114: {fileID: 11400022}
   - 114: {fileID: 11400020}
+  - 114: {fileID: 11400026}
   m_Layer: 0
   m_Name: CubeOfDeath
   m_TagString: Enemy
@@ -39,24 +40,6 @@ GameObject:
   m_Layer: 0
   m_Name: Collider (Chest)
   m_TagString: Enemy
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &100004
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 400004}
-  - 135: {fileID: 13500000}
-  - 54: {fileID: 5400002}
-  - 114: {fileID: 11400012}
-  m_Layer: 0
-  m_Name: NeighbourSensor
-  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -157,7 +140,6 @@ Transform:
   - {fileID: 400002}
   - {fileID: 400014}
   - {fileID: 400012}
-  - {fileID: 400004}
   - {fileID: 400006}
   - {fileID: 400008}
   - {fileID: 400010}
@@ -168,17 +150,6 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 400000}
---- !u!4 &400004
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -276,21 +247,6 @@ Rigidbody:
   m_AngularDrag: .0500000007
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!54 &5400002
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: .0500000007
-  m_UseGravity: 0
-  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -454,25 +410,6 @@ MonoBehaviour:
   m_Name: 
   _health: 100
   photonView: {fileID: 0}
---- !u!114 &11400012
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1779681629, guid: 6341f308145306047b757d395c025251, type: 3}
-  m_Name: 
-  rainVersionString: RAIN.Sensors.SphereSensor 1.3.1.30910
-  focusOfAttention: []
-  maxFocus: 5
-  persistenceTime: 5
-  sensations:
-  - sensationName: neighbour
-  useRaycastTest: 0
-  raycastLocation: {fileID: 0}
-  visualize: 0
 --- !u!114 &11400014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -555,7 +492,7 @@ MonoBehaviour:
   m_Script: {fileID: -1598434837, guid: 6341f308145306047b757d395c025251, type: 3}
   m_Name: 
   rainVersionString: RAIN.Motion.AIKinematicController 1.3.1.30910
-  controllerType: 2
+  controllerType: 3
 --- !u!114 &11400022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -588,18 +525,35 @@ MonoBehaviour:
   rainVersionString: RAIN.Minds.BehaviorTreeMind 1.3.1.30910
   behaviorTreeFilename: SimpleFollow
   rootName: root
---- !u!135 &13500000
-SphereCollider:
+--- !u!114 &11400026
+MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_GameObject: {fileID: 100000}
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 6
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdaa54b947d9546e3bc45d706993c55c, type: 3}
+  m_Name: 
+  _drawGizmos: 0
+  _center: {x: 0, y: 0, z: 0}
+  _scaledCenter: {x: 0, y: 0, z: 0}
+  _scaledRadius: 1
+  _radius: 1
+  _minSpeedForTurning: .100000001
+  _movementPriority: 0
+  _turnTime: .25
+  _internalMass: 1
+  _overrideRigidbodyMass: 0
+  _isPlanar: 0
+  _arrivalRadius: 1
+  _maxSpeed: 1
+  _maxForce: 10
+  _canMove: 1
+  _accelerationSmoothRate: .400000006
+  _queueName: Steering
+  _tickLength: .100000001
+  _traceAdjustments: 0
 --- !u!135 &13500002
 SphereCollider:
   m_ObjectHideFlags: 1

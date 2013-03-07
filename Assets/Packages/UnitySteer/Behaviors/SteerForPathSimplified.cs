@@ -52,7 +52,7 @@ public class SteerForPathSimplified : Steering
 	/// <summary>
 	/// Path to follow
 	/// </summary>
-	public IPathway Path { get; set; }
+	public Pathway Path { get; set; }
 	#endregion
 
 	/// <summary>

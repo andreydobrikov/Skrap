@@ -10,6 +10,7 @@ public class DetectableObjectEditor: Editor {
 		EditorGUIUtility.LookLikeInspector();
 		var vehicle = target as DetectableObject;
 		var newCenter = centerEditor.DrawEditor(vehicle.Center);
+		GUILayout.EndHorizontal();	// HINT This became necessary in Unity4 - I guess it's a bug...
 		if (newCenter != vehicle.Center) 
 		{
 			vehicle.Center = newCenter; // To avoid triggering the debugger.

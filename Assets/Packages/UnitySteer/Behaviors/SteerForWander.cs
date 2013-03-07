@@ -1,63 +1,129 @@
+#define ANNOTATE_WANDER
 using UnityEngine;
 using UnitySteer;
-using UnitySteer.Helpers;
 
 /// <summary>
 /// Steers a vehicle to wander around
+/// Following http://www.red3d.com/cwr/steer/Wander.html
 /// </summary>
 [AddComponentMenu("UnitySteer/Steer/... for Wander")]
 public class SteerForWander : Steering
 {
-	#region Private fields
-	float _wanderSide;
-	float _wanderUp;
+	Vector3 _target;
 	
 	[SerializeField]
-	float _maxLatitudeSide = 2;
-	[SerializeField]
-	float _maxLatitudeUp = 2;
-	#endregion
+	float _targetDistance = 2; 	    	// Offset distance of target sphere
 	
+    [SerializeField]
+    float _targetRadius = 1f;	       	// Target sphere radius
+
+    [SerializeField]
+	float _jitterRadius = 0.4f;			// Jitter sphere radius
+
+    #region Public properties
 	
-	#region Public properties
 	/// <summary>
-	/// Maximum latitude to use for the random scalar walk on the side
+	/// Radius of the sphere, the target point is moving on.
 	/// </summary>
-	public float MaxLatitudeSide {
-		get {
-			return this._maxLatitudeSide;
-		}
-		set {
-			_maxLatitudeSide = value;
-		}
-	}
+    public float TargetRadius
+    {
+        get {
+            return _targetRadius;
+        }
+        set
+        {
+            _targetRadius = value;
+        }
+    }
 
 	/// <summary>
-	/// Maximum latitude to use for the random scalar walk on the up vector
+	/// Offset from the vehicle to the target sphere.
 	/// </summary>
-	public float MaxLatitudeUp {
-		get {
-			return this._maxLatitudeUp;
-		}
-		set {
-			_maxLatitudeUp = value;
-		}
-	}
-	#endregion
-
+    public float TargetDistance
+    {
+        get
+        {
+            return _targetDistance;
+        }
+        set
+        {
+            _targetDistance = value;
+        }
+    }
 	
-	protected override Vector3 CalculateForce ()
+	/// <summary>
+	/// Radius of the jitter sphere, which is applied to the target point every tick.
+	/// </summary>
+	public float JitterRadius
 	{
-		float speed = Vehicle.MaxSpeed;
+		get
+		{
+			return _jitterRadius;
+		}
+		set
+		{
+			_jitterRadius = value;
+		}
+	}
 
-		// random walk WanderSide and WanderUp between -1 and +1
-		_wanderSide = OpenSteerUtility.scalarRandomWalk (_wanderSide, speed, -_maxLatitudeSide, _maxLatitudeSide);
-		_wanderUp   = OpenSteerUtility.scalarRandomWalk (_wanderUp,   speed, -_maxLatitudeUp,   _maxLatitudeUp);
+    #endregion
+	
+	protected override void Start()
+	{
+		base.Start();
 		
-		// return a pure lateral steering vector: (+/-Side) + (+/-Up)
-		Vector3	 result = (transform.right * _wanderSide) + (transform.up * _wanderUp);
-		return result;
+		ResetTarget();
 	}
 	
-}
+	public void ResetTarget() {
+		_target = Vehicle.transform.forward;
+	}
+	
+	private Vector3 Direction()
+	{
+		if (Vehicle.Speed == 0)
+			return Vehicle.transform.forward.normalized;  // Default to forward vector
+		else
+        	return Vehicle.Velocity.normalized;          // Velocity
+	}
+	
+    protected override Vector3 CalculateForce()
+    {
+		_target += new Vector3(Random.Range(-_jitterRadius, _jitterRadius), 
+					Random.Range(-_jitterRadius, _jitterRadius), 
+					Random.Range(-_jitterRadius, _jitterRadius));
+		if (Vehicle.IsPlanar)
+		{
+			_target.y = 0;
+		}
+		_target.Normalize();
+		_target *= _targetRadius;
+		
+		var force = Direction() * _targetDistance + _target;
+		if (force.sqrMagnitude > 1)
+		{
+			force.Normalize();
+		}
+		return force;
+    }
 
+#if ANNOTATE_WANDER
+    void OnDrawGizmos()
+    {
+        if (Vehicle != null)
+        {
+            var center = Vehicle.Position + Direction() * _targetDistance;
+
+			Gizmos.color = Color.blue;
+			Gizmos.DrawLine(Vehicle.Position, center);
+			
+			Gizmos.color = Color.grey;
+			Gizmos.DrawWireSphere(center, _targetRadius);
+			
+            Gizmos.color = Color.red;
+			Gizmos.DrawLine(center, center + _target);
+        }
+    }
+
+#endif
+}

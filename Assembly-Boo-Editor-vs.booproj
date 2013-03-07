@@ -62,6 +62,7 @@
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_Antialiasing\NFAA.shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Masked Colored.shader" />
      <None Include="Assets\NGUI\Examples\Atlases\Wooden\Arimo18.txt" />
+     <None Include="Assets\Plugins\TickedPriorityQueue\LICENSE.txt" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\VignetteShader.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_DepthOfField\DepthOfFieldScatter.shader" />
      <None Include="Assets\iTween\ReadMe!\ReadMe!.txt" />
@@ -146,6 +147,7 @@
      <None Include="Assets\Standard Assets\Water (Pro Only)\Water4\Sources\Shaders\FX-Water4.shader" />
      <None Include="Assets\NGUI\Examples\Atlases\SciFi\SciFi Font - Normal.txt" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\SimpleClear.shader" />
+     <None Include="Assets\AI\Resources\BehaviorTrees\Test.xml" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored (SoftClip).shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_Antialiasing\FXAA3Console.shader" />
      <None Include="Assets\NGUI\Examples\Models\Orc Armor\Orc Armor.shader" />
@@ -165,6 +167,9 @@
  <Reference Include="Assets\Plugins\AIFramework">
  <HintPath>Assets\Plugins\AIFramework.dll</HintPath>
  </Reference>
+ <Reference Include="Assets\Plugins\TickedPriorityQueue\TickedPriorityQueue">
+ <HintPath>Assets\Plugins\TickedPriorityQueue\TickedPriorityQueue.dll</HintPath>
+ </Reference>
  <Reference Include="Assets\RAIN\RAINIndie">
  <HintPath>Assets\RAIN\RAINIndie.dll</HintPath>
  </Reference>
@@ -179,9 +184,6 @@
  </Reference>
  <Reference Include="\Applications\Unity\Unity.app\Contents\Frameworks\Managed\UnityEditor.Graphs">
  <HintPath>\Applications\Unity\Unity.app\Contents\Frameworks\Managed\UnityEditor.Graphs.dll</HintPath>
- </Reference>
- <Reference Include="Assets\Plugins\TickedPriorityQueue">
- <HintPath>Assets\Plugins\TickedPriorityQueue.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

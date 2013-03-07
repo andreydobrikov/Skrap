@@ -28,6 +28,6 @@ public class SteerForTarget : Steering {
 	/// </returns>
 	protected override Vector3 CalculateForce()
 	{
-		return Vehicle.GetSeekVector(Target.position);
+		return Vehicle.GetSeekVector(Target.position, false);
 	}
 }

@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
 	public float health{get; protected set;}
 
 	public PhotonView photonView;
+	public Weapon weapon;
 	private RAINAgent agent;
 
 	void Start()
@@ -26,6 +27,12 @@ public class Enemy : MonoBehaviour
 		}
 
 		health = _health;
+
+		InitEnemy();
+	}
+
+	protected virtual void InitEnemy()
+	{
 	}
 
 
@@ -37,6 +44,11 @@ public class Enemy : MonoBehaviour
 		transform.Find("Sensor").gameObject.SetActive(false);
 		transform.Find("Obstacle Avoidance Collider").gameObject.SetActive(false);
 		transform.Find("NeighbourSensor").gameObject.SetActive(false);
+
+		foreach(var steerer in GetComponents<Steering>())
+		{
+			Destroy(steerer);
+		}
 
 	}
 
@@ -54,5 +66,10 @@ public class Enemy : MonoBehaviour
 	public void NetworkApplyDamage(float damageAmount)
 	{
 		ApplyDamage(damageAmount);
+	}
+
+	protected virtual void Attack()
+	{
+
 	}
 }

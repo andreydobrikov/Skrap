@@ -93,6 +93,8 @@ public abstract class Vehicle : DetectableObject
 	/// similar to what AutonomousVehicle does
 	/// </summary>
 	public Vector3 DesiredVelocity { get; protected set; }
+    
+    public GameObject GameObject { get; private set; }
 	
 	
 	/// <summary>
@@ -112,13 +114,13 @@ public abstract class Vehicle : DetectableObject
 	public float Mass {
 		get
 		{
-			return (rigidbody != null && !_overrideRigidbodyMass) ? rigidbody.mass : _internalMass;
+			return (Rigidbody != null && !_overrideRigidbodyMass) ? Rigidbody.mass : _internalMass;
 		}
 		set
 		{
-			if(rigidbody != null && !_overrideRigidbodyMass)
+			if(Rigidbody != null && !_overrideRigidbodyMass)
 			{
-				rigidbody.mass = value;
+				Rigidbody.mass = value;
 			}
 			else
 			{
@@ -193,6 +195,8 @@ public abstract class Vehicle : DetectableObject
 		get { return this._radar; }
 	}
 	
+    public Rigidbody Rigidbody { get; private set; }
+    
 	/// <summary>
 	/// Speedometer attached to the same object as this vehicle, if any
 	/// </summary>
@@ -225,10 +229,6 @@ public abstract class Vehicle : DetectableObject
 	/// <summary>
 	/// Current vehicle speed
 	/// </summary>
-	/// <remarks>
-	/// If the vehicle has a speedometer, then we return the actual measured
-	/// value instead of simply the length of the velocity vector.
-	/// </remarks>
 	public abstract float Speed { get; set; }
 	
 	/// <summary>
@@ -264,6 +264,18 @@ public abstract class Vehicle : DetectableObject
 	/// implement one of the two methods.
 	/// </summary>
 	public abstract Vector3 Velocity { get; set; }
+
+	/// <summary>
+	/// Current magnitude for the vehicle's velocity.
+	/// </summary>
+	/// <remarks>
+	/// It is expected to be set at the same time that the Velocity is 
+	/// assigned in one of the descendent classes.  It may or may not
+	/// match the vehicle speed, depending on how that is calculated - 
+	/// for example, some subclasses can use a Speedometer to calculate
+	/// their speed.
+	/// </remarks>
+	public float DesiredSpeed { get; protected set; }
 	
 	#endregion
 
@@ -271,6 +283,8 @@ public abstract class Vehicle : DetectableObject
 	protected override void Awake()
 	{
 		base.Awake();
+        GameObject = gameObject;
+        Rigidbody = GetComponent<Rigidbody>();        
 		var allSteerings = GetComponents<Steering>();
 		Steerings = allSteerings.Where( x => !x.IsPostProcess ).ToArray();
 		SteeringPostprocessors = allSteerings.Where( x => x.IsPostProcess ).ToArray();
@@ -286,6 +300,13 @@ public abstract class Vehicle : DetectableObject
 	
 	
 	#region Methods	
+	public void RefreshSteeringList()
+	{
+		var allSteerings = GetComponents<Steering>();
+		Steerings = allSteerings.Where( x => !x.IsPostProcess ).ToArray();
+		SteeringPostprocessors = allSteerings.Where( x => x.IsPostProcess ).ToArray();
+	}
+
 	/// <summary>
 	/// Adjust the steering force passed to ApplySteeringForce.
 	/// </summary>
@@ -325,7 +346,7 @@ public abstract class Vehicle : DetectableObject
 	/// </returns>
 	public override Vector3 PredictFuturePosition(float predictionTime)
     {
-        return _transform.position + (Velocity * predictionTime);
+        return Transform.position + (Velocity * predictionTime);
 	}
 
 	/// <summary>
@@ -339,7 +360,7 @@ public abstract class Vehicle : DetectableObject
 	/// </returns>
 	public Vector3 PredictFutureDesiredPosition(float predictionTime)
 	{
-		return _transform.position + (DesiredVelocity * predictionTime);
+		return Transform.position + (DesiredVelocity * predictionTime);
 	}
 	
 	
@@ -350,13 +371,16 @@ public abstract class Vehicle : DetectableObject
 	/// Another vehicle to check against<see cref="Vehicle"/>
 	/// </param>
 	/// <param name="minDistance">
-	/// Minimum distance <see cref="System.Single"/>
+	/// Minimum distance. Any vehicle closer than this, is considered a neighbor. <see cref="System.Single"/>
 	/// </param>
 	/// <param name="maxDistance">
-	/// Maximum distance <see cref="System.Single"/>
+	/// Maximum distance. Any vehicle further away than his, is not considered to be a neighbor. <see cref="System.Single"/>
 	/// </param>
 	/// <param name="cosMaxAngle">
-	/// Cosine of the maximum angle between vehicles (for performance)<see cref="System.Single"/>
+	/// Cosine (for performance) of the maximum angle between vehicles. Is the other vehicle between min 
+	/// and max distance away, the angle between this vehicles forward vector and the direction vector 
+	/// towards the other vehicle is calculated. The cosine of that angle is checked if it's larger than 
+	/// the max cosine value. <see cref="System.Single"/>
 	/// </param>
 	/// <returns>
 	/// True if within the neighborhood, or false if otherwise<see cref="System.Boolean"/>
@@ -389,7 +413,7 @@ public abstract class Vehicle : DetectableObject
 				{
 					// otherwise, test angular offset from forward axis
 					Vector3 unitOffset = offset / (float) Mathf.Sqrt (distanceSquared);
-					float forwardness = Vector3.Dot(_transform.forward, unitOffset);
+					float forwardness = Vector3.Dot(Transform.forward, unitOffset);
 					return forwardness > cosMaxAngle;
 				}
 			}
@@ -409,7 +433,7 @@ public abstract class Vehicle : DetectableObject
 	/// <returns>
 	/// Seek vector <see cref="Vector3"/>
 	/// </returns>
-	public Vector3 GetSeekVector(Vector3 target, bool considerVelocity = true)
+	public Vector3 GetSeekVector(Vector3 target, bool considerVelocity = true, bool considerArrivalRadius = true)
 	{
 		/*
 		 * First off, we calculate how far we are from the target, If this
@@ -427,7 +451,7 @@ public abstract class Vehicle : DetectableObject
 		
 		var difference = target - Position;
         float d = difference.sqrMagnitude;
-        if (d > SquaredArrivalRadius)
+        if (!considerArrivalRadius || d > SquaredArrivalRadius)
 		{
 			/*
 			 * But suppose we still have some distance to go. The first step
@@ -453,9 +477,10 @@ public abstract class Vehicle : DetectableObject
 	/// Target speed to aim for.
 	/// </param>
 	public Vector3 GetTargetSpeedVector(float targetSpeed) {
-		 float mf = MaxForce;
-		 float speedError = targetSpeed - Speed;
-		 return _transform.forward * Mathf.Clamp (speedError, -mf, +mf);		
+		float mf = MaxForce;
+		float speedError = targetSpeed - Speed;
+		Debug.LogWarning(speedError);
+		return Transform.forward * Mathf.Clamp (speedError, -mf, +mf);		
 	}
 	
 	
@@ -478,8 +503,8 @@ public abstract class Vehicle : DetectableObject
 	/// </summary>
 	public void ResetOrientation()
 	{
-		_transform.up = Vector3.up;
-		_transform.forward = Vector3.forward;
+		Transform.up = Vector3.up;
+		Transform.forward = Vector3.forward;
 	}
 	
 	public float PredictNearestApproachTime(Vehicle other)
@@ -550,7 +575,7 @@ public abstract class Vehicle : DetectableObject
 												  ref Vector3 ourPosition, 
 												  ref Vector3 hisPosition)
 	{
-		return ComputeNearestApproachPositions(other, time, ref ourPosition, ref hisPosition, Speed, _transform.forward);
+		return ComputeNearestApproachPositions(other, time, ref ourPosition, ref hisPosition, Speed, Transform.forward);
 	}		
 	
 	/// <summary>
@@ -583,7 +608,7 @@ public abstract class Vehicle : DetectableObject
 	                                             Vector3 ourForward)
 	{
 		Vector3	   myTravel = ourForward 	   		   *	ourSpeed * time;
-		Vector3 otherTravel = other._transform.forward * other.Speed * time;
+		Vector3 otherTravel = other.Transform.forward * other.Speed * time;
 
 		ourPosition = Position 		 + myTravel;
 		hisPosition = other.Position + otherTravel;

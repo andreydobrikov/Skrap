@@ -25,15 +25,21 @@ MonoBehaviour:
     Errored: 0
   - FileName: BuzzSawBT.xml
     BehaviorTreeName: BuzzSawBT
-    BehaviorTreeID: 10
-    LastUpdate: 634980011176886530
-    LastModified: 634980011170000000
+    BehaviorTreeID: 8
+    LastUpdate: 634982659446231380
+    LastModified: 634982659440000000
     Errored: 0
-  - FileName: BuzzsawBT 1.xml
-    BehaviorTreeName: BuzzsawBT 1
+  - FileName: SimpleFollow.xml
+    BehaviorTreeName: SimpleFollow
     BehaviorTreeID: 9
-    LastUpdate: 634980011286852650
-    LastModified: 634980011280000000
+    LastUpdate: 634980798564633660
+    LastModified: 634980798560000000
+    Errored: 0
+  - FileName: Test.xml
+    BehaviorTreeName: Test
+    BehaviorTreeID: 3
+    LastUpdate: 634982503059391150
+    LastModified: 634982503050000000
     Errored: 0
   TreeState:
     _branchRepo:
@@ -46,32 +52,306 @@ MonoBehaviour:
       _lastUpdate: 0
       _children: 
       _variables: 
-    - _fields: []
-      _type: 0
-      _id: 0
-      _parent: 0
+    - _fields:
+      - _field: name
+        _currentValue: detectplayer
+        _recordChange: 1
+        _changed: 0
+      - _field: repeatuntil
+        _currentValue: running
+        _recordChange: 1
+        _changed: 0
+      - _field: precondition
+        _currentValue: 
+        _recordChange: 1
+        _changed: 0
+      - _field: debug
+        _currentValue: False
+        _recordChange: 1
+        _changed: 0
+      - _field: sensor
+        _currentValue: Sensor
+        _recordChange: 1
+        _changed: 0
+      - _field: aspect
+        _currentValue: player
+        _recordChange: 1
+        _changed: 0
+      - _field: variable
+        _currentValue: target
+        _recordChange: 1
+        _changed: 0
+      _type: 9
+      _id: 1
+      _parent: 2
       _reference: 0
       _referencedCount: 0
       _lastUpdate: 0
       _children: 
       _variables: 
-    - _fields: []
-      _type: 0
-      _id: 0
+    - _fields:
+      - _field: name
+        _currentValue: root
+        _recordChange: 1
+        _changed: 0
+      - _field: open
+        _currentValue: True
+        _recordChange: 0
+        _changed: 0
+      - _field: repeatuntil
+        _currentValue: 
+        _recordChange: 1
+        _changed: 0
+      - _field: precondition
+        _currentValue: 
+        _recordChange: 1
+        _changed: 0
+      - _field: debug
+        _currentValue: False
+        _recordChange: 1
+        _changed: 0
+      - _field: fail
+        _currentValue: any
+        _recordChange: 1
+        _changed: 0
+      - _field: succeed
+        _currentValue: any
+        _recordChange: 1
+        _changed: 0
+      - _field: tiebreaker
+        _currentValue: fail
+        _recordChange: 1
+        _changed: 0
+      _type: 13
+      _id: 2
+      _parent: 3
+      _reference: 0
+      _referencedCount: 0
+      _lastUpdate: 634982503048985170
+      _children: 010000000a000000
+      _variables: 
+    - _fields:
+      - _field: name
+        _currentValue: Test
+        _recordChange: 1
+        _changed: 0
+      - _field: open
+        _currentValue: True
+        _recordChange: 0
+        _changed: 0
+      - _field: repeatuntil
+        _currentValue: 
+        _recordChange: 1
+        _changed: 0
+      - _field: precondition
+        _currentValue: 
+        _recordChange: 1
+        _changed: 0
+      - _field: debug
+        _currentValue: False
+        _recordChange: 1
+        _changed: 0
+      - _field: variablesopen
+        _currentValue: False
+        _recordChange: 1
+        _changed: 0
+      _type: 5
+      _id: 3
       _parent: 0
       _reference: 0
       _referencedCount: 0
-      _lastUpdate: 0
+      _lastUpdate: 634982503048985540
+      _children: 02000000
+      _variables: 
+    - _fields:
+      - _field: name
+        _currentValue: root
+        _recordChange: 1
+        _changed: 0
+      - _field: open
+        _currentValue: True
+        _recordChange: 0
+        _changed: 0
+      - _field: repeatuntil
+        _currentValue: running
+        _recordChange: 1
+        _changed: 0
+      - _field: precondition
+        _currentValue: 
+        _recordChange: 1
+        _changed: 0
+      - _field: debug
+        _currentValue: False
+        _recordChange: 1
+        _changed: 0
+      _type: 17
+      _id: 4
+      _parent: 8
+      _reference: 0
+      _referencedCount: 0
+      _lastUpdate: 634982659335668030
+      _children: 0c0000000d000000
+      _variables: 
+    - _fields:
+      - _field: name
+        _currentValue: root
+        _recordChange: 1
+        _changed: 0
+      - _field: open
+        _currentValue: True
+        _recordChange: 0
+        _changed: 0
+      - _field: repeatuntil
+        _currentValue: running
+        _recordChange: 1
+        _changed: 0
+      - _field: precondition
+        _currentValue: 
+        _recordChange: 1
+        _changed: 0
+      - _field: debug
+        _currentValue: False
+        _recordChange: 1
+        _changed: 0
+      _type: 17
+      _id: 5
+      _parent: 9
+      _reference: 0
+      _referencedCount: 0
+      _lastUpdate: 634980798554510890
+      _children: 0700000006000000
+      _variables: 
+    - _fields:
+      - _field: name
+        _currentValue: Pursuit
+        _recordChange: 1
+        _changed: 0
+      - _field: repeatuntil
+        _currentValue: 
+        _recordChange: 1
+        _changed: 0
+      - _field: precondition
+        _currentValue: target != null
+        _recordChange: 1
+        _changed: 0
+      - _field: debug
+        _currentValue: True
+        _recordChange: 1
+        _changed: 0
+      - _field: classname
+        _currentValue: SteeringPursuit
+        _recordChange: 1
+        _changed: 0
+      _type: 1
+      _id: 6
+      _parent: 5
+      _reference: 0
+      _referencedCount: 0
+      _lastUpdate: 634980790409552130
       _children: 
       _variables: 
-    - _fields: []
-      _type: 0
-      _id: 0
+    - _fields:
+      - _field: name
+        _currentValue: detectplayer
+        _recordChange: 1
+        _changed: 0
+      - _field: repeatuntil
+        _currentValue: 
+        _recordChange: 1
+        _changed: 0
+      - _field: precondition
+        _currentValue: target == null
+        _recordChange: 1
+        _changed: 0
+      - _field: debug
+        _currentValue: True
+        _recordChange: 1
+        _changed: 0
+      - _field: sensor
+        _currentValue: Sensor
+        _recordChange: 1
+        _changed: 0
+      - _field: aspect
+        _currentValue: player
+        _recordChange: 1
+        _changed: 0
+      - _field: variable
+        _currentValue: target
+        _recordChange: 1
+        _changed: 0
+      _type: 9
+      _id: 7
+      _parent: 5
+      _reference: 0
+      _referencedCount: 0
+      _lastUpdate: 634980797688603340
+      _children: 
+      _variables: 
+    - _fields:
+      - _field: name
+        _currentValue: BuzzSawBT
+        _recordChange: 1
+        _changed: 0
+      - _field: open
+        _currentValue: True
+        _recordChange: 0
+        _changed: 0
+      - _field: repeatuntil
+        _currentValue: 
+        _recordChange: 1
+        _changed: 0
+      - _field: precondition
+        _currentValue: 
+        _recordChange: 1
+        _changed: 0
+      - _field: debug
+        _currentValue: False
+        _recordChange: 1
+        _changed: 0
+      - _field: variablesopen
+        _currentValue: False
+        _recordChange: 1
+        _changed: 0
+      _type: 5
+      _id: 8
       _parent: 0
       _reference: 0
       _referencedCount: 0
-      _lastUpdate: 0
-      _children: 
+      _lastUpdate: 634982659436189070
+      _children: 04000000
+      _variables: 
+    - _fields:
+      - _field: name
+        _currentValue: SimpleFollow
+        _recordChange: 1
+        _changed: 0
+      - _field: open
+        _currentValue: True
+        _recordChange: 0
+        _changed: 0
+      - _field: repeatuntil
+        _currentValue: 
+        _recordChange: 1
+        _changed: 0
+      - _field: precondition
+        _currentValue: 
+        _recordChange: 1
+        _changed: 0
+      - _field: debug
+        _currentValue: False
+        _recordChange: 1
+        _changed: 0
+      - _field: variablesopen
+        _currentValue: False
+        _recordChange: 1
+        _changed: 0
+      _type: 5
+      _id: 9
+      _parent: 0
+      _reference: 0
+      _referencedCount: 0
+      _lastUpdate: 634980798554510890
+      _children: 05000000
       _variables: 
     - _fields:
       - _field: name
@@ -131,28 +411,57 @@ MonoBehaviour:
         _recordChange: 1
         _changed: 0
       _type: 12
-      _id: 4
-      _parent: 6
+      _id: 10
+      _parent: 2
       _reference: 0
       _referencedCount: 0
-      _lastUpdate: 634980011166756810
+      _lastUpdate: 634982503048985540
       _children: 
       _variables: 
     - _fields:
       - _field: name
-        _currentValue: detectplayer
+        _currentValue: action 1275
         _recordChange: 1
-        _changed: 0
+        _changed: 1
       - _field: repeatuntil
-        _currentValue: running
-        _recordChange: 1
-        _changed: 0
-      - _field: precondition
         _currentValue: 
         _recordChange: 1
         _changed: 0
+      - _field: precondition
+        _currentValue: target != null
+        _recordChange: 1
+        _changed: 0
       - _field: debug
-        _currentValue: False
+        _currentValue: True
+        _recordChange: 1
+        _changed: 0
+      - _field: classname
+        _currentValue: SteeringPursuit
+        _recordChange: 1
+        _changed: 0
+      _type: 1
+      _id: 11
+      _parent: 0
+      _reference: 0
+      _referencedCount: 0
+      _lastUpdate: 0
+      _children: 
+      _variables: 
+    - _fields:
+      - _field: name
+        _currentValue: detect player
+        _recordChange: 1
+        _changed: 0
+      - _field: repeatuntil
+        _currentValue: 
+        _recordChange: 1
+        _changed: 0
+      - _field: precondition
+        _currentValue: target == null
+        _recordChange: 1
+        _changed: 0
+      - _field: debug
+        _currentValue: True
         _recordChange: 1
         _changed: 0
       - _field: sensor
@@ -168,157 +477,41 @@ MonoBehaviour:
         _recordChange: 1
         _changed: 0
       _type: 9
-      _id: 5
-      _parent: 6
+      _id: 12
+      _parent: 4
       _reference: 0
       _referencedCount: 0
-      _lastUpdate: 0
+      _lastUpdate: 634982659211923320
       _children: 
       _variables: 
     - _fields:
       - _field: name
-        _currentValue: root
+        _currentValue: BuzzSawChase
         _recordChange: 1
-        _changed: 0
-      - _field: open
-        _currentValue: True
-        _recordChange: 0
         _changed: 0
       - _field: repeatuntil
         _currentValue: 
         _recordChange: 1
         _changed: 0
       - _field: precondition
-        _currentValue: 
+        _currentValue: target != null
         _recordChange: 1
         _changed: 0
       - _field: debug
-        _currentValue: False
+        _currentValue: True
         _recordChange: 1
         _changed: 0
-      - _field: fail
-        _currentValue: any
+      - _field: classname
+        _currentValue: SteeringPursuit
         _recordChange: 1
         _changed: 0
-      - _field: succeed
-        _currentValue: any
-        _recordChange: 1
-        _changed: 0
-      - _field: tiebreaker
-        _currentValue: fail
-        _recordChange: 1
-        _changed: 0
-      _type: 13
-      _id: 6
-      _parent: 10
+      _type: 1
+      _id: 13
+      _parent: 4
       _reference: 0
       _referencedCount: 0
-      _lastUpdate: 634980011166746400
-      _children: 0500000004000000
-      _variables: 
-    - _fields: []
-      _type: 0
-      _id: 0
-      _parent: 0
-      _reference: 0
-      _referencedCount: 0
-      _lastUpdate: 0
+      _lastUpdate: 634982659436189070
       _children: 
       _variables: 
-    - _fields:
-      - _field: name
-        _currentValue: root
-        _recordChange: 1
-        _changed: 0
-      - _field: open
-        _currentValue: True
-        _recordChange: 0
-        _changed: 0
-      - _field: repeatuntil
-        _currentValue: 
-        _recordChange: 1
-        _changed: 0
-      - _field: precondition
-        _currentValue: 
-        _recordChange: 1
-        _changed: 0
-      - _field: debug
-        _currentValue: False
-        _recordChange: 1
-        _changed: 0
-      _type: 17
-      _id: 8
-      _parent: 9
-      _reference: 0
-      _referencedCount: 0
-      _lastUpdate: 0
-      _children: 
-      _variables: 
-    - _fields:
-      - _field: name
-        _currentValue: BuzzsawBT 1
-        _recordChange: 1
-        _changed: 0
-      - _field: open
-        _currentValue: True
-        _recordChange: 0
-        _changed: 0
-      - _field: repeatuntil
-        _currentValue: 
-        _recordChange: 1
-        _changed: 0
-      - _field: precondition
-        _currentValue: 
-        _recordChange: 1
-        _changed: 0
-      - _field: debug
-        _currentValue: False
-        _recordChange: 1
-        _changed: 0
-      - _field: variablesopen
-        _currentValue: False
-        _recordChange: 1
-        _changed: 0
-      _type: 5
-      _id: 9
-      _parent: 0
-      _reference: 0
-      _referencedCount: 0
-      _lastUpdate: 634980011286852560
-      _children: 08000000
-      _variables: 
-    - _fields:
-      - _field: name
-        _currentValue: BuzzSawBT
-        _recordChange: 1
-        _changed: 0
-      - _field: open
-        _currentValue: True
-        _recordChange: 0
-        _changed: 0
-      - _field: repeatuntil
-        _currentValue: 
-        _recordChange: 1
-        _changed: 0
-      - _field: precondition
-        _currentValue: 
-        _recordChange: 1
-        _changed: 0
-      - _field: debug
-        _currentValue: False
-        _recordChange: 1
-        _changed: 0
-      - _field: variablesopen
-        _currentValue: False
-        _recordChange: 1
-        _changed: 0
-      _type: 5
-      _id: 10
-      _parent: 0
-      _reference: 0
-      _referencedCount: 0
-      _lastUpdate: 634980011166756810
-      _children: 06000000
-      _variables: 
-    _freeList: 01000000020000000300000007000000
+    _freeList: 
   Version: 13

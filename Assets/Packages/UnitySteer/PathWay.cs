@@ -46,7 +46,7 @@ namespace UnitySteer
 		public int segmentIndex;
 	}
 
-    public abstract class Pathway : IPathway
+    public abstract class Pathway
     {
         private bool _isCyclic;
         

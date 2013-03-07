@@ -17,6 +17,7 @@ GameObject:
   - 114: {fileID: 11400012}
   - 114: {fileID: 11400016}
   - 114: {fileID: 11400014}
+  - 114: {fileID: 11400018}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -337,6 +338,21 @@ MonoBehaviour:
   m_Script: {fileID: 369423152, guid: 6341f308145306047b757d395c025251, type: 3}
   m_Name: 
   rainVersionString: RAIN.Ontology.Entity 1.3.1.30910
+--- !u!114 &11400018
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7437c9e6603c404bb91cbc45fe71c78, type: 3}
+  m_Name: 
+  _drawGizmos: 0
+  _center: {x: 0, y: 0, z: 0}
+  _scaledCenter: {x: 0, y: 0, z: 0}
+  _scaledRadius: 1
+  _radius: 1
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1

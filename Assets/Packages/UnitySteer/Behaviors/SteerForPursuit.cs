@@ -10,8 +10,24 @@ using UnitySteer.Helpers;
 public class SteerForPursuit : Steering
 {
 	#region Private fields
+	MovementTracker _movementTracker;
+	
 	[SerializeField]
-	DetectableObject _quarry;
+	Transform _quarry;
+	
+    /// <summary>
+    /// A distance at which we are 'close enough' to stop pursuing
+    /// </summary>
+    /// <remarks>
+    /// Notice that this is different from the vehicle's arrival radius,
+    /// since we may want to be able to have an attack distance that is
+    /// different from the radius used when moving to a point.
+    /// </remarks>
+    [SerializeField]
+    float _acceptableDistance = 0;
+    
+	[SerializeField]
+	public float _trackingInterval = 0.25f;
 	
 	[SerializeField]
 	float _maxPredictionTime = 5;
@@ -34,7 +50,7 @@ public class SteerForPursuit : Steering
 	/// Target being pursued
 	/// </summary>
 	/// <remarks>When set, it will clear the flag that indicates we've already reported that we arrived</remarks>
-	public DetectableObject Quarry {
+	public Transform Quarry {
 		get {
 			return this._quarry;
 		}
@@ -43,22 +59,36 @@ public class SteerForPursuit : Steering
 			{
 				ReportedArrival = false;
 				_quarry = value;
+				
+				if (_movementTracker == null)
+				{
+					_movementTracker = new MovementTracker(_quarry, _trackingInterval);
+				}
+				_movementTracker.target = _quarry;
+				_movementTracker.enabled = _quarry != null;
 			}
 		}
 	}
 	#endregion
 	
+	protected override void Awake()
+	{
+		base.Awake();
+		_movementTracker = new MovementTracker(Quarry, _trackingInterval);
+		_movementTracker.enabled = Quarry != null;
+	}
+	
 	protected override Vector3 CalculateForce ()
 	{
 		if (_quarry == null) {
-			this.enabled = false;
 			return Vector3.zero;
 		}
 		
 		var force    = Vector3.zero;
-		var offset	 = _quarry.Position - Vehicle.Position;
+		var offset	 = _quarry.position - Vehicle.Position;
 		var distance = offset.magnitude;
-        var radius   = Vehicle.ScaledRadius + _quarry.ScaledRadius;
+		// TODO missing from merge: + _quarry.ScaledRadius, because _quarry is only a transform in my version
+        var radius   = Vehicle.ScaledRadius + _acceptableDistance;
 
 		if (distance > radius)
 		{
@@ -66,7 +96,7 @@ public class SteerForPursuit : Steering
 
 			// how parallel are the paths of "this" and the quarry
 			// (1 means parallel, 0 is pependicular, -1 is anti-parallel)
-			float parallelness = Vector3.Dot(transform.forward, _quarry.transform.forward);
+			float parallelness = Vector3.Dot(transform.forward, _quarry.forward);
 
 			// how "forward" is the direction to the quarry
 			// (1 means dead ahead, 0 is directly to the side, -1 is straight back)
@@ -132,13 +162,13 @@ public class SteerForPursuit : Steering
 			float etl = (et > _maxPredictionTime) ? _maxPredictionTime : et;
 
 			// estimated position of quarry at intercept
-			Vector3 target = _quarry.PredictFuturePosition (etl);
+			Vector3 target = _quarry.position + _movementTracker.velocity * etl;
 
-			force = Vehicle.GetSeekVector(target);
+			force = Vehicle.GetSeekVector(target, true, true);
 			
 			#if ANNOTATE_PURSUIT
 			Debug.DrawLine(Vehicle.Position, force, Color.blue);
-			Debug.DrawLine(Quarry.Position, target, Color.cyan);
+			Debug.DrawLine(Quarry.position, target, Color.cyan);
 			Debug.DrawRay(target, Vector3.up * 4, Color.cyan);
 			#endif
 		}

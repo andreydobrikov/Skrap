@@ -9,6 +9,6 @@ public class SteerForAlignment : SteerForNeighbors
 	protected override Vector3 CalculateNeighborContribution(Vehicle other)
 	{
 		// accumulate sum of neighbor's heading
-		return other.transform.forward;;
+		return other.transform.forward;
 	}
 }
