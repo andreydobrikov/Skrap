@@ -13,18 +13,39 @@ public class SimpleChase : Action
         actionName = "SimpleChase";
     }
 
+	SteerForPursuit pursuit;
+	Vehicle thisVehicle;
+	
+
 	public override ActionResult Start (Agent agent, float deltaTime)
 	{
+		thisVehicle = agent.Avatar.GetComponent<AutonomousVehicle>();
+		
+		pursuit = agent.Avatar.GetComponent<SteerForPursuit>();
+		if(pursuit == null)
+			pursuit = agent.Avatar.AddComponent<SteerForPursuit>();
+		else
+			pursuit.enabled = true;
+		pursuit.Weight = 14.0f;
 
+		pursuit.Quarry = agent.actionContext.GetContextItem<GameObject>("target").transform;
+		
+		thisVehicle.RefreshSteeringList();
+		return ActionResult.RUNNING;
+		
 	}
 
 	public override ActionResult Execute (Agent agent, float deltaTime)
 	{
-
+		return ActionResult.RUNNING;
+		
 	}
 
 	public override ActionResult Stop (Agent agent, float deltaTime)
 	{
+		agent.Avatar.GetComponent<SteerForPursuit>().enabled = false;
+		
+		return ActionResult.SUCCESS;
 
 	}
 }
