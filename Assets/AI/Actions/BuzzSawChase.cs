@@ -9,7 +9,7 @@ public class BuzzSawChase : Action
 {
     public BuzzSawChase()
     {
-        actionName = "SteeringPursuit";
+        actionName = "BuzzSawChase";
     }
 
 	SteerForPursuit pursuit;

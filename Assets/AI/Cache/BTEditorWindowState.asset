@@ -26,14 +26,14 @@ MonoBehaviour:
   - FileName: BuzzSawBT.xml
     BehaviorTreeName: BuzzSawBT
     BehaviorTreeID: 8
-    LastUpdate: 634982659446231380
-    LastModified: 634982659440000000
+    LastUpdate: 634985948687412000
+    LastModified: 634985948680000000
     Errored: 0
   - FileName: SimpleFollow.xml
     BehaviorTreeName: SimpleFollow
     BehaviorTreeID: 9
-    LastUpdate: 634980798564633660
-    LastModified: 634980798560000000
+    LastUpdate: 634985947443053830
+    LastModified: 634985947440000000
     Errored: 0
   - FileName: Test.xml
     BehaviorTreeName: Test
@@ -223,7 +223,7 @@ MonoBehaviour:
       _variables: 
     - _fields:
       - _field: name
-        _currentValue: Pursuit
+        _currentValue: SimpleChase
         _recordChange: 1
         _changed: 0
       - _field: repeatuntil
@@ -239,7 +239,7 @@ MonoBehaviour:
         _recordChange: 1
         _changed: 0
       - _field: classname
-        _currentValue: SteeringPursuit
+        _currentValue: SimpleChase
         _recordChange: 1
         _changed: 0
       _type: 1
@@ -247,7 +247,7 @@ MonoBehaviour:
       _parent: 5
       _reference: 0
       _referencedCount: 0
-      _lastUpdate: 634980790409552130
+      _lastUpdate: 634985947433028960
       _children: 
       _variables: 
     - _fields:
@@ -317,7 +317,7 @@ MonoBehaviour:
       _parent: 0
       _reference: 0
       _referencedCount: 0
-      _lastUpdate: 634982659436189070
+      _lastUpdate: 634985948677388830
       _children: 04000000
       _variables: 
     - _fields:
@@ -350,7 +350,7 @@ MonoBehaviour:
       _parent: 0
       _reference: 0
       _referencedCount: 0
-      _lastUpdate: 634980798554510890
+      _lastUpdate: 634985947433028960
       _children: 05000000
       _variables: 
     - _fields:
@@ -418,29 +418,9 @@ MonoBehaviour:
       _lastUpdate: 634982503048985540
       _children: 
       _variables: 
-    - _fields:
-      - _field: name
-        _currentValue: action 1275
-        _recordChange: 1
-        _changed: 1
-      - _field: repeatuntil
-        _currentValue: 
-        _recordChange: 1
-        _changed: 0
-      - _field: precondition
-        _currentValue: target != null
-        _recordChange: 1
-        _changed: 0
-      - _field: debug
-        _currentValue: True
-        _recordChange: 1
-        _changed: 0
-      - _field: classname
-        _currentValue: SteeringPursuit
-        _recordChange: 1
-        _changed: 0
-      _type: 1
-      _id: 11
+    - _fields: []
+      _type: 0
+      _id: 0
       _parent: 0
       _reference: 0
       _referencedCount: 0
@@ -502,7 +482,7 @@ MonoBehaviour:
         _recordChange: 1
         _changed: 0
       - _field: classname
-        _currentValue: SteeringPursuit
+        _currentValue: BuzzSawChase
         _recordChange: 1
         _changed: 0
       _type: 1
@@ -510,8 +490,8 @@ MonoBehaviour:
       _parent: 4
       _reference: 0
       _referencedCount: 0
-      _lastUpdate: 634982659436189070
+      _lastUpdate: 634985948677388830
       _children: 
       _variables: 
-    _freeList: 
+    _freeList: 0b000000
   Version: 13
