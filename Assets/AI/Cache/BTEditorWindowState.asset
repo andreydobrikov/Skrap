@@ -32,8 +32,8 @@ MonoBehaviour:
   - FileName: SimpleFollow.xml
     BehaviorTreeName: SimpleFollow
     BehaviorTreeID: 9
-    LastUpdate: 634987864364081590
-    LastModified: 634987864360000000
+    LastUpdate: 634988721879530420
+    LastModified: 634988721870000000
     Errored: 0
   - FileName: Test.xml
     BehaviorTreeName: Test
@@ -210,15 +210,15 @@ MonoBehaviour:
         _recordChange: 1
         _changed: 0
       - _field: debug
-        _currentValue: False
+        _currentValue: True
         _recordChange: 1
         _changed: 0
       _type: 17
       _id: 5
-      _parent: 11
+      _parent: 15
       _reference: 0
       _referencedCount: 0
-      _lastUpdate: 634987831245583830
+      _lastUpdate: 634988720515459840
       _children: 0700000006000000
       _variables: 
     - _fields:
@@ -284,7 +284,7 @@ MonoBehaviour:
       _parent: 5
       _reference: 0
       _referencedCount: 0
-      _lastUpdate: 634980797688603340
+      _lastUpdate: 634988720313627450
       _children: 
       _variables: 
     - _fields:
@@ -350,8 +350,8 @@ MonoBehaviour:
       _parent: 0
       _reference: 0
       _referencedCount: 0
-      _lastUpdate: 634987864354076830
-      _children: 0b000000
+      _lastUpdate: 634988721869518900
+      _children: 0f000000
       _variables: 12000000
     - _fields:
       - _field: name
@@ -453,11 +453,11 @@ MonoBehaviour:
         _changed: 0
       _type: 13
       _id: 11
-      _parent: 9
+      _parent: 0
       _reference: 0
       _referencedCount: 0
-      _lastUpdate: 634987863002574290
-      _children: 0500000010000000
+      _lastUpdate: 634988720683948030
+      _children: 
       _variables: 
     - _fields:
       - _field: name
@@ -531,7 +531,7 @@ MonoBehaviour:
         _recordChange: 1
         _changed: 0
       - _field: repeatuntil
-        _currentValue: 
+        _currentValue: success
         _recordChange: 1
         _changed: 0
       - _field: precondition
@@ -539,7 +539,7 @@ MonoBehaviour:
         _recordChange: 1
         _changed: 0
       - _field: debug
-        _currentValue: False
+        _currentValue: True
         _recordChange: 1
         _changed: 0
       - _field: expression
@@ -551,41 +551,12 @@ MonoBehaviour:
       _parent: 16
       _reference: 0
       _referencedCount: 0
-      _lastUpdate: 634987864191667210
+      _lastUpdate: 634988721819797320
       _children: 
       _variables: 
     - _fields:
       - _field: name
-        _currentValue: selector 906
-        _recordChange: 1
-        _changed: 0
-      - _field: open
-        _currentValue: True
-        _recordChange: 0
-        _changed: 0
-      - _field: repeatuntil
-        _currentValue: 
-        _recordChange: 1
-        _changed: 0
-      - _field: precondition
-        _currentValue: 
-        _recordChange: 1
-        _changed: 0
-      - _field: debug
-        _currentValue: False
-        _recordChange: 1
-        _changed: 0
-      _type: 16
-      _id: 15
-      _parent: 0
-      _reference: 0
-      _referencedCount: 0
-      _lastUpdate: 634987860869350600
-      _children: 
-      _variables: 
-    - _fields:
-      - _field: name
-        _currentValue: AttackSequence
+        _currentValue: root
         _recordChange: 1
         _changed: 0
       - _field: open
@@ -605,11 +576,40 @@ MonoBehaviour:
         _recordChange: 1
         _changed: 0
       _type: 17
-      _id: 16
-      _parent: 11
+      _id: 15
+      _parent: 9
       _reference: 0
       _referencedCount: 0
-      _lastUpdate: 634987863756307460
+      _lastUpdate: 634988721252318990
+      _children: 0500000010000000
+      _variables: 
+    - _fields:
+      - _field: name
+        _currentValue: AttackSequence
+        _recordChange: 1
+        _changed: 0
+      - _field: open
+        _currentValue: True
+        _recordChange: 0
+        _changed: 0
+      - _field: repeatuntil
+        _currentValue: success
+        _recordChange: 1
+        _changed: 0
+      - _field: precondition
+        _currentValue: 
+        _recordChange: 1
+        _changed: 0
+      - _field: debug
+        _currentValue: True
+        _recordChange: 1
+        _changed: 0
+      _type: 17
+      _id: 16
+      _parent: 15
+      _reference: 0
+      _referencedCount: 0
+      _lastUpdate: 634988721869518900
       _children: 0e00000011000000
       _variables: 
     - _fields:
@@ -626,7 +626,7 @@ MonoBehaviour:
         _recordChange: 1
         _changed: 0
       - _field: debug
-        _currentValue: False
+        _currentValue: True
         _recordChange: 1
         _changed: 0
       - _field: classname
@@ -638,7 +638,7 @@ MonoBehaviour:
       _parent: 16
       _reference: 0
       _referencedCount: 0
-      _lastUpdate: 634987863891397100
+      _lastUpdate: 634988701293072340
       _children: 
       _variables: 
     - _fields:

@@ -34,6 +34,9 @@ public class NetworkController : MonoBehaviour
 
 
 
+
+
+
 	#region Photon Messages
 
 	void OnConnectedToPhoton()

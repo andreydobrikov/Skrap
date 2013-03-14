@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
 
 	public PhotonView photonView;
 	public Weapon weapon;
+	public float meleeDamage;
 	private RAINAgent agent;
 
 	void Start()
@@ -63,13 +64,16 @@ public class Enemy : MonoBehaviour
 	}
 
 	[RPC]
-	public void NetworkApplyDamage(float damageAmount)
+	public void NetworkApplyDamageToEnemy(float damageAmount, PhotonMessageInfo info)
 	{
-		ApplyDamage(damageAmount);
+		if(info.photonView.viewID == this.photonView.viewID)
+			ApplyDamage(damageAmount);
 	}
 
-	protected virtual void Attack()
+	public virtual void Attack()
 	{
+		animation.Play("Attack");
 
+		
 	}
 }

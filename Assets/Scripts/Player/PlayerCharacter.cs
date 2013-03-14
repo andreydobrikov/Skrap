@@ -5,31 +5,41 @@ using System.Collections.Generic;
 using System.Linq;
 
 public class PlayerCharacter : MonoBehaviour 
-{
-	private int m_level;
-	private int m_xp;
-	private int m_xpNeeded;
+{	
+	private int _level;
+	private int _xp;
+	private int _xpNeeded;
+
 	[SerializeField]
 	protected Weapon primaryWeapon;
 	[SerializeField]
 	protected Weapon secondaryWeapon;
-	
+	private float _health;
+
+	private PhotonView photonView;
+
+	public float health 
+	{
+		get { return _health; }
+		set { _health = value; }
+	}	
+
 	public int level
 	{
-		get { return m_level; }
-		set { m_level = value; }
+		get { return _level; }
+		set { _level = value; }
 	}
 
 	public int Xp 
 	{
-		get { return this.m_xp; }
-		set { m_xp = value; }
+		get { return this._xp; }
+		set { _xp = value; }
 	}
 
 	public int XpNeeded 
 	{
-		get { return this.m_xpNeeded; }
-		set { m_xpNeeded = value; }
+		get { return this._xpNeeded; }
+		set { _xpNeeded = value; }
 	}
 
 	float fireRateTimer;
@@ -53,21 +63,19 @@ public class PlayerCharacter : MonoBehaviour
 			if(firstHit.Transform.parent != null)
 			{
 				var enemyObj = firstHit.Transform.parent.gameObject;
-				enemyObj.GetComponent<Enemy>().photonView.RPC("NetworkApplyDamage", PhotonTargets.All, primaryWeapon.damage);
+				enemyObj.GetComponent<Enemy>().photonView.RPC("NetworkApplyDamageToEnemy", PhotonTargets.All, primaryWeapon.damage);
 			}
 			else
 			{
 				var enemyObj = firstHit.Transform.gameObject;
-				enemyObj.GetComponent<Enemy>().photonView.RPC("NetworkApplyDamage", PhotonTargets.All, primaryWeapon.damage);
+				enemyObj.GetComponent<Enemy>().photonView.RPC("NetworkApplyDamageToEnemy", PhotonTargets.All, primaryWeapon.damage);
 			}
 		}
-
-
-		
 	}
 
 	void Start()
 	{
+		photonView = GetComponent<PhotonView>();
 		primaryWeapon.OnHit += OnHit;
 	}
 
@@ -97,6 +105,24 @@ public class PlayerCharacter : MonoBehaviour
 	void Ability()
 	{
 		
+	}
+
+	public void ApplyDamage(float damageAmount)
+	{
+		health -= damageAmount;
+
+		if(health <= 0)
+		{
+			//Kill player.
+		}
+	}
+	
+	[RPC]
+	public void NetworkApplyDamageToPlayer(float damageAmount, PhotonMessageInfo info)
+	{
+		Debug.Log("+++--- Applying damage to player: " + this.photonView.viewID + " info ower id: " + info.photonView.owner.ID + " this owner id: " + this.photonView.owner.ID);
+		if(info.photonView.owner.ID == this.photonView.owner.ID)
+			ApplyDamage(damageAmount);
 	}
 	
 }

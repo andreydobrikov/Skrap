@@ -19,6 +19,7 @@ public class SimpleChase : Action
 
 	public override ActionResult Start (Agent agent, float deltaTime)
 	{
+		Debug.Log("Adding chase AI!");
 		thisVehicle = agent.Avatar.GetComponent<AutonomousVehicle>();
 		
 		pursuit = agent.Avatar.GetComponent<SteerForPursuit>();
@@ -37,12 +38,21 @@ public class SimpleChase : Action
 
 	public override ActionResult Execute (Agent agent, float deltaTime)
 	{
+		var distance = Vector3.Distance(agent.Avatar.transform.position, pursuit.Quarry.position);
+		agent.actionContext.SetContextItem<float>("distance", distance);
+		if(pursuit.ReportedArrival)
+		{
+			Debug.Log("PURSUIT REPORTED SUCCESS!");
+			return ActionResult.SUCCESS;
+		}
+
 		return ActionResult.RUNNING;
 		
 	}
 
 	public override ActionResult Stop (Agent agent, float deltaTime)
 	{
+		Debug.Log("removed chase AI!");
 		agent.Avatar.GetComponent<SteerForPursuit>().enabled = false;
 		
 		return ActionResult.SUCCESS;
