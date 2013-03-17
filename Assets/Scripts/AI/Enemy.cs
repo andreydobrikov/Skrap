@@ -44,13 +44,12 @@ public class Enemy : MonoBehaviour
 		transform.Find("Path Manager").gameObject.SetActive(false);
 		transform.Find("Sensor").gameObject.SetActive(false);
 		transform.Find("Obstacle Avoidance Collider").gameObject.SetActive(false);
-		transform.Find("NeighbourSensor").gameObject.SetActive(false);
 
 		foreach(var steerer in GetComponents<Steering>())
 		{
 			Destroy(steerer);
 		}
-
+		
 	}
 
 	public void ApplyDamage(float damageAmount)
