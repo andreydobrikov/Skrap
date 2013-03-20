@@ -27,7 +27,7 @@ RenderSettings:
   m_SpotCookie: {fileID: 0}
   m_ObjectHideFlags: 0
 --- !u!127 &3
-GameManager:
+LevelGameManager:
   m_ObjectHideFlags: 0
 --- !u!157 &4
 LightmapSettings:
@@ -424,7 +424,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1830605538}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.998514116, y: 0, z: 0}
+  m_LocalPosition: {x: -2.67084002, y: 1.33333337, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1909829199}
@@ -533,7 +533,7 @@ Transform:
   m_GameObject: {fileID: 1906592870}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: .00529100513, y: .00529100513, z: .00529100513}
+  m_LocalScale: {x: .00625000009, y: .00625000009, z: .00625000009}
   m_Children:
   - {fileID: 1394951848}
   m_Father: {fileID: 0}
