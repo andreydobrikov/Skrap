@@ -8,12 +8,7 @@
 // Copyright (c) 2012 Garth de Wet
 // 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#if UNITY_4_0
-namespace CorruptedSmileStudio.Spawner
-{
-#else
 using CorruptedSmileStudio.Spawner;
-#endif
 using UnityEditor;
 using UnityEngine;
 
@@ -63,6 +58,3 @@ public class SpawnerInspector : Editor
             EditorUtility.SetDirty(target);
     }
 }
-#if UNITY_4_0
-}
-#endif

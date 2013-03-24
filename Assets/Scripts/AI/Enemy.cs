@@ -1,8 +1,6 @@
 using UnityEngine;
 using CorruptedSmileStudio.Spawner;
 using System.Collections;
-using RAIN.Sensors;
-using RAIN.Core;
 using System.Linq;
 
 public class Enemy : MonoBehaviour 
@@ -15,12 +13,13 @@ public class Enemy : MonoBehaviour
 	public PhotonView photonView;
 	public Weapon weapon;
 	public float meleeDamage;
-	private RAINAgent agent;
+	protected Animator animator;
+	protected AutonomousVehicle vehicle;
 
 	void Start()
 	{
+		vehicle = GetComponent<AutonomousVehicle>();
 		photonView = GetComponent<PhotonView>();
-		agent = GetComponent<RAINAgent>();
 		//Sets itself up for networking
 		if (!photonView.isMine)
 		{
@@ -28,7 +27,8 @@ public class Enemy : MonoBehaviour
 		}
 
 		health = _health;
-
+		animator = transform.Find("Graphics/mine_bot").GetComponent<Animator>();
+		Debug.Log(animator);
 		InitEnemy();
 	}
 
@@ -36,11 +36,13 @@ public class Enemy : MonoBehaviour
 	{
 	}
 
+	protected virtual void UpdateAnimation()
+	{
+	}
+
 
 	public void DisableAI()
 	{
-		agent.mind.gameObject.SetActive(false);
-		agent.enabled = false;
 		transform.Find("Path Manager").gameObject.SetActive(false);
 		transform.Find("Sensor").gameObject.SetActive(false);
 		transform.Find("Obstacle Avoidance Collider").gameObject.SetActive(false);
@@ -71,8 +73,6 @@ public class Enemy : MonoBehaviour
 
 	public virtual void Attack()
 	{
-		animation.Play("Attack");
 
-		
 	}
 }

@@ -265,6 +265,8 @@ public class MenuController : MonoBehaviour
         {
             GameObject playerLabel = (GameObject)Instantiate(playerListPlayerPrefab);
             playerLabel.transform.parent = playerList.transform;
+			playerLabel.transform.localScale = Vector3.one;
+
             playerLabel.transform.Find("PlayerName").GetComponent<UILabel>().text = playerName;
 			playerLabel.transform.Find("PlayerName").GetComponent<UILabel>().depth = 12;
             playerList.Reposition();

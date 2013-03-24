@@ -27,7 +27,7 @@ RenderSettings:
   m_SpotCookie: {fileID: 0}
   m_ObjectHideFlags: 0
 --- !u!127 &3
-GameManager:
+LevelGameManager:
   m_ObjectHideFlags: 0
 --- !u!157 &4
 LightmapSettings:
@@ -396,7 +396,7 @@ MonoBehaviour:
     units: []
   - level: 0
     units: []
-  totalUnitsToSpawn: 5
+  totalUnitsToSpawn: 1
   spawnID: 0
   spawn: 0
   spawnType: 4

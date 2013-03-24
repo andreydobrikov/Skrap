@@ -115,6 +115,7 @@ public class PlayerCharacter : MonoBehaviour
 		{
 			//Kill player.
 		}
+		Debug.Log("Player recieved damage. Health is now: " + health);
 	}
 	
 	[RPC]

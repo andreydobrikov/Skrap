@@ -8,12 +8,7 @@
 // Copyright (c) 2012 Garth de Wet
 // 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#if UNITY_4_0
-namespace CorruptedSmileStudio.Spawner
-{
-#else
 using CorruptedSmileStudio.Spawner;
-#endif
 using System.Collections;
 using UnityEngine;
 
@@ -366,6 +361,3 @@ public class Spawner : MonoBehaviour
         numberOfSpawnedUnits--;
     }
 }
-#if UNITY_4_0
-}
-#endif
