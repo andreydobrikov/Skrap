@@ -12,6 +12,8 @@ public class BuzzSawController : Enemy
 		directionParamID = Animator.StringToHash("Direction");
 		speedParamID = Animator.StringToHash("Speed");
 		attackParamID = Animator.StringToHash("Attack");
+
+
 	}
 
 	protected override void UpdateAnimation()
@@ -49,10 +51,16 @@ public class BuzzSawController : Enemy
 		//Make sure the network and ai has been setup before doing anything
 		if (photonView != null)
 			UpdateAnimation();
+		Debug.Log("Attack status is: " + animator.GetBool(attackParamID));
 	}
 
 	public override void Attack()
 	{
 		animator.SetBool(attackParamID, true);
+	}
+
+	public override void FinishAttack()
+	{
+		animator.SetBool(attackParamID, false);
 	}
 }

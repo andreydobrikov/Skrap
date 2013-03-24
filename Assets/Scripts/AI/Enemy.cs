@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
 	public PhotonView photonView;
 	public Weapon weapon;
 	public float meleeDamage;
+	public float timeBetweenAttacks;
 	protected Animator animator;
 	protected AutonomousVehicle vehicle;
 
@@ -72,6 +73,11 @@ public class Enemy : MonoBehaviour
 	}
 
 	public virtual void Attack()
+	{
+
+	}
+
+	public virtual void FinishAttack()
 	{
 
 	}

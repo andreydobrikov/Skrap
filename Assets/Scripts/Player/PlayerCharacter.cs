@@ -14,15 +14,10 @@ public class PlayerCharacter : MonoBehaviour
 	protected Weapon primaryWeapon;
 	[SerializeField]
 	protected Weapon secondaryWeapon;
+	[SerializeField]
 	private float _health;
 
 	private PhotonView photonView;
-
-	public float health 
-	{
-		get { return _health; }
-		set { _health = value; }
-	}	
 
 	public int level
 	{
@@ -109,13 +104,13 @@ public class PlayerCharacter : MonoBehaviour
 
 	public void ApplyDamage(float damageAmount)
 	{
-		health -= damageAmount;
+		_health -= damageAmount;
 
-		if(health <= 0)
+		if(_health <= 0)
 		{
 			//Kill player.
 		}
-		Debug.Log("Player recieved damage. Health is now: " + health);
+		Debug.Log("Player recieved damage. Health is now: " + _health);
 	}
 	
 	[RPC]

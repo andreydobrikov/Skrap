@@ -12,7 +12,7 @@ AnimatorController:
     m_Min: -180
     m_Max: 180
     m_DefaultVector: {x: 0, y: 0, z: 0}
-    m_DefaultFloat: 150
+    m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
   - m_Name: Speed
@@ -20,7 +20,7 @@ AnimatorController:
     m_Min: -1
     m_Max: 1
     m_DefaultVector: {x: 0, y: 0, z: 0}
-    m_DefaultFloat: 1
+    m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
   - m_Name: Attack
@@ -171,6 +171,24 @@ Transition:
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
+--- !u!1101 &110136157
+Transition:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 110211125}
+  m_DstState: {fileID: 110274709}
+  m_TransitionDuration: .1875
+  m_TransitionOffset: 0
+  m_Conditions:
+  - m_ConditionMode: 5
+    m_ConditionEvent: 
+    m_EventTreshold: 0
+    m_ExitTime: .8125
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
 --- !u!1101 &110153610
 Transition:
   m_ObjectHideFlags: 3
@@ -299,6 +317,7 @@ StateMachine:
       first: {fileID: 110211125}
       second:
       - {fileID: 110153610}
+      - {fileID: 110136157}
   m_OrderedTransitions:
     data:
       first: {fileID: 0}
@@ -317,6 +336,7 @@ StateMachine:
       first: {fileID: 110211125}
       second:
       - {fileID: 110153610}
+      - {fileID: 110136157}
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}

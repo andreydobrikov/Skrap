@@ -210,6 +210,7 @@ MonoBehaviour:
   m_Name: 
   primaryWeapon: {fileID: 11400010}
   secondaryWeapon: {fileID: 0}
+  _health: 100
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -126,9 +126,9 @@ GameObject:
   - 4: {fileID: 400014}
   - 65: {fileID: 6500004}
   - 54: {fileID: 5400006}
-  - 114: {fileID: 11400016}
   - 114: {fileID: 11400014}
   - 114: {fileID: 11400012}
+  - 114: {fileID: 11400016}
   - 114: {fileID: 11400010}
   - 114: {fileID: 11400028}
   - 114: {fileID: 11400006}
@@ -428,7 +428,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100014}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.23434734, y: 3.51085281, z: 12.5029526}
+  m_LocalPosition: {x: -9.82129097, y: .253392458, z: 5.47605467}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400012}
@@ -577,9 +577,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100038}
-  m_LocalRotation: {x: .707106829, y: 0, z: 0, w: -.707106829}
+  m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400036}
   m_Father: {fileID: 400016}
@@ -900,8 +900,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 1.60000002, z: 3}
-  m_Center: {x: 0, y: .300000012, z: 0}
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: .600000024, z: 0}
 --- !u!65 &6500004
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -912,8 +912,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 1.60000002, z: 3}
-  m_Center: {x: 0, y: .300000012, z: 0}
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: .600000024, z: 0}
 --- !u!65 &6500006
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -921,7 +921,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100010}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 3, y: 1.60000002, z: 3}
@@ -1040,7 +1040,7 @@ MonoBehaviour:
   m_Script: {fileID: -1456383791, guid: 6341f308145306047b757d395c025251, type: 3}
   m_Name: 
   rainVersionString: RAIN.Minds.BehaviorTreeMind 1.3.1.30910
-  behaviorTreeFilename: SimpleFollow
+  behaviorTreeFilename: BuzzSawBT
   rootName: root
 --- !u!114 &11400010
 MonoBehaviour:
@@ -1111,12 +1111,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 100014}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 562698ca86cba4231811a9ef482552ea, type: 3}
+  m_Script: {fileID: 11500000, guid: efc18c4a242ea6747bc03aa92f646ae6, type: 3}
   m_Name: 
   _health: 100
   photonView: {fileID: 0}
   weapon: {fileID: 0}
-  meleeDamage: 0
+  meleeDamage: 5
+  timeBetweenAttacks: 0
 --- !u!114 &11400018
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -431,6 +431,7 @@ MonoBehaviour:
   photonView: {fileID: 0}
   weapon: {fileID: 0}
   meleeDamage: 0
+  timeBetweenAttacks: 0
 --- !u!114 &11400014
 MonoBehaviour:
   m_ObjectHideFlags: 1
