@@ -18,7 +18,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_NETWORK;ENABLE_MONO;ENABLE_PHYSICS;ENABLE_TERRAIN;ENABLE_CACHING;ENABLE_SUBSTANCE;ENABLE_GENERICS;ENABLE_CLOTH;ENABLE_MOVIES;ENABLE_AUDIO;ENABLE_WWW;ENABLE_SHADOWS;ENABLE_DUCK_TYPING;UNITY_4_1_0;UNITY_4_1;ENABLE_PROFILER;UNITY_EDITOR</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_OSX;ENABLE_MICROPHONE;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_NETWORK;ENABLE_MONO;ENABLE_PHYSICS;ENABLE_TERRAIN;ENABLE_CACHING;ENABLE_SUBSTANCE;ENABLE_GENERICS;ENABLE_CLOTH;ENABLE_GAMECENTER;ENABLE_MOVIES;ENABLE_AUDIO;ENABLE_WWW;ENABLE_SHADOWS;ENABLE_DUCK_TYPING;UNITY_4_1_0;UNITY_4_1;ENABLE_PROFILER;UNITY_EDITOR</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -37,10 +37,10 @@
     <Reference Include="System.XML" />
 	<Reference Include="System.Core" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -143,35 +143,35 @@
      <None Include="Assets\Packages\Photon Unity Networking\changelog.txt" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_Antialiasing\FXAAPreset2.shader" />
      <None Include="Assets\Plugins\PathologicalGames\readme.txt" />
- <Reference Include="Assembly-UnityScript-firstpass">
+ <Reference Include="Library\ScriptAssemblies\Assembly-UnityScript-firstpass">
  <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
- <Reference Include="Newtonsoft.Json">
+ <Reference Include="Assets\Packages\Photon Unity Networking\Editor\PhotonNetwork\Newtonsoft.Json">
  <HintPath>Assets\Packages\Photon Unity Networking\Editor\PhotonNetwork\Newtonsoft.Json.dll</HintPath>
  </Reference>
- <Reference Include="Photon3Unity3D">
+ <Reference Include="Assets\Packages\Photon Unity Networking\Plugins\PhotonNetwork\library\Photon3Unity3D">
  <HintPath>Assets\Packages\Photon Unity Networking\Plugins\PhotonNetwork\library\Photon3Unity3D.dll</HintPath>
  </Reference>
- <Reference Include="AIFramework">
+ <Reference Include="Assets\Plugins\AIFramework">
  <HintPath>Assets\Plugins\AIFramework.dll</HintPath>
  </Reference>
- <Reference Include="TickedPriorityQueue">
+ <Reference Include="Assets\Plugins\TickedPriorityQueue\TickedPriorityQueue">
  <HintPath>Assets\Plugins\TickedPriorityQueue\TickedPriorityQueue.dll</HintPath>
  </Reference>
- <Reference Include="RAINIndie">
+ <Reference Include="Assets\RAIN\RAINIndie">
  <HintPath>Assets\RAIN\RAINIndie.dll</HintPath>
  </Reference>
- <Reference Include="Recast">
+ <Reference Include="Assets\RAIN\Recast">
  <HintPath>Assets\RAIN\Recast.dll</HintPath>
  </Reference>
- <Reference Include="RAINEditor">
+ <Reference Include="Assets\RAIN\Editor\RAINEditor">
  <HintPath>Assets\RAIN\Editor\RAINEditor.dll</HintPath>
  </Reference>
- <Reference Include="RecastEditor">
+ <Reference Include="Assets\RAIN\Editor\RecastEditor">
  <HintPath>Assets\RAIN\Editor\RecastEditor.dll</HintPath>
  </Reference>
- <Reference Include="UnityEditor.Graphs">
- <HintPath>C:\Program Files (x86)\Unity\Editor\Data\Managed\UnityEditor.Graphs.dll</HintPath>
+ <Reference Include="\Applications\Unity\Unity.app\Contents\Frameworks\Managed\UnityEditor.Graphs">
+ <HintPath>\Applications\Unity\Unity.app\Contents\Frameworks\Managed\UnityEditor.Graphs.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

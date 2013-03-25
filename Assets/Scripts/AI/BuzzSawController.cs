@@ -56,6 +56,8 @@ public class BuzzSawController : Enemy
 
 	public override void Attack()
 	{
+		var target = GetComponent<SteerForPursuit>().Quarry;
+		animator.MatchTarget(target.position, target.transform.rotation, AvatarTarget.Root, new MatchTargetWeightMask(Vector3.zero, 1.0f), 0.1f);
 		animator.SetBool(attackParamID, true);
 	}
 

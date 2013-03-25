@@ -33,7 +33,6 @@ public class AttackPlayer : Action
 			var damage = agent.Avatar.GetComponent<Enemy>().meleeDamage;
 			target.GetComponent<PhotonView>().RPC("NetworkApplyDamageToPlayer", PhotonTargets.All, damage);
 			Debug.Log("We attacked the player. We applied " + damage + " to the player " + agent.actionContext.GetContextItem<GameObject>("target").name);
-			agent.Avatar.GetComponent<Enemy>().FinishAttack();
 			return ActionResult.SUCCESS;
 		}
 		else
