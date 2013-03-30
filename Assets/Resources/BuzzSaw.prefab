@@ -15,91 +15,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &100002
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 400008}
-  - 114: {fileID: 11400008}
-  m_Layer: 0
-  m_Name: Mind
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &100004
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 400000}
-  - 54: {fileID: 5400000}
-  - 65: {fileID: 6500000}
-  - 114: {fileID: 11400000}
-  m_Layer: 0
-  m_Name: Sensor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &100006
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 400002}
-  - 114: {fileID: 11400002}
-  m_Layer: 0
-  m_Name: Path Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &100008
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 400004}
-  - 54: {fileID: 5400002}
-  - 135: {fileID: 13500000}
-  - 114: {fileID: 11400004}
-  m_Layer: 0
-  m_Name: Obstacle Avoidance Collider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &100010
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 400006}
-  - 65: {fileID: 6500006}
-  - 114: {fileID: 11400020}
-  m_Layer: 12
-  m_Name: EnemyTagObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &100012
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,8 +41,6 @@ GameObject:
   - 4: {fileID: 400014}
   - 65: {fileID: 6500004}
   - 54: {fileID: 5400006}
-  - 114: {fileID: 11400014}
-  - 114: {fileID: 11400012}
   - 114: {fileID: 11400016}
   - 114: {fileID: 11400010}
   - 114: {fileID: 11400028}
@@ -344,61 +257,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &400000
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 400014}
---- !u!4 &400002
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100006}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 400014}
---- !u!4 &400004
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100008}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 400014}
---- !u!4 &400006
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100010}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 400014}
---- !u!4 &400008
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100002}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 400014}
 --- !u!4 &400010
 Transform:
   m_ObjectHideFlags: 1
@@ -428,17 +286,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100014}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.82129097, y: .253392458, z: 5.47605467}
+  m_LocalPosition: {x: 10.5237465, y: -4.81578016, z: -14.5632849}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400012}
-  - {fileID: 400006}
   - {fileID: 400010}
   - {fileID: 400016}
-  - {fileID: 400008}
-  - {fileID: 400004}
-  - {fileID: 400002}
-  - {fileID: 400000}
   m_Father: {fileID: 0}
 --- !u!4 &400016
 Transform:
@@ -833,36 +686,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100036}
   m_Mesh: {fileID: 4300000, guid: 9d49a00a420822146b5d90f22e280024, type: 3}
---- !u!54 &5400000
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: .0500000007
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!54 &5400002
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100008}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: .0500000007
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!54 &5400006
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -878,18 +701,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!65 &6500000
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3, y: 1.60000002, z: 3}
-  m_Center: {x: 0, y: .300000012, z: 0}
 --- !u!65 &6500002
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -914,18 +725,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: .600000024, z: 0}
---- !u!65 &6500006
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100010}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3, y: 1.60000002, z: 3}
-  m_Center: {x: 0, y: .300000012, z: 0}
 --- !u!95 &9500000
 Animator:
   m_ObjectHideFlags: 1
@@ -938,77 +737,6 @@ Animator:
   m_CullingMode: 1
   m_ApplyRootMotion: 0
   m_AnimatePhysics: 0
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1031171884, guid: 6341f308145306047b757d395c025251, type: 3}
-  m_Name: 
-  rainVersionString: RAIN.Sensors.ExpandingBoxSensor 1.3.1.30910
-  focusOfAttention: []
-  maxFocus: 5
-  persistenceTime: 5
-  sensations:
-  - sensationName: sight
-  useRaycastTest: 1
-  raycastLocation: {fileID: 400010}
-  visualize: 1
-  expandRate: {x: 30, y: 2, z: 30}
-  maxSize: {x: 12, y: 12, z: 12}
-  minSize: {x: 1, y: 1, z: 1}
-  searching: 1
---- !u!114 &11400002
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 681896232, guid: 6341f308145306047b757d395c025251, type: 3}
-  m_Name: 
-  rainVersionString: RAIN.Path.RAINPathManager 1.3.1.30910
-  moveTarget:
-    closeEnoughDistance: 0
-    _targetType: 0
-    _transformTarget: {fileID: 0}
-    _vectorTarget: {x: 0, y: 0, z: 0}
-  lookTarget:
-    closeEnoughDistance: 0
-    _targetType: 0
-    _transformTarget: {fileID: 0}
-    _vectorTarget: {x: 0, y: 0, z: 0}
-  closeEnoughDistance: .100000001
-  closeEnoughAngle: 5
-  faceBeforeMoveAngle: 90
-  avoidObstacles: 0
-  avoidRadius: .5
-  avoidanceSmoothingTime: .300000012
-  avoidanceChecksPerSecond: 30
-  avoidanceStrength: 2
-  useNavigationGrid: 0
-  maxPathFindStepsPerFrame: 100
-  navgridFilename: 
-  useWaypointCollection: 0
-  waypointCollection: {fileID: 0}
-  allow3DMovement: 0
-  allow3DLook: 0
---- !u!114 &11400004
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100008}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1299452854, guid: 6341f308145306047b757d395c025251, type: 3}
-  m_Name: 
-  rainVersionString: RAIN.Sensors.SphereObstacleAvoidanceCollider 1.3.1.30910
-  collideWithTerrain: 0
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1029,19 +757,6 @@ MonoBehaviour:
     m_Bits: 2048
   _drawGizmos: 1
   _preAllocateSize: 30
---- !u!114 &11400008
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1456383791, guid: 6341f308145306047b757d395c025251, type: 3}
-  m_Name: 
-  rainVersionString: RAIN.Minds.BehaviorTreeMind 1.3.1.30910
-  behaviorTreeFilename: BuzzSawBT
-  rootName: root
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1072,37 +787,6 @@ MonoBehaviour:
   _tickLength: .100000001
   _maxQueueProcessedPerUpdate: 20
   _traceAdjustments: 1
---- !u!114 &11400012
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1598434837, guid: 6341f308145306047b757d395c025251, type: 3}
-  m_Name: 
-  rainVersionString: RAIN.Motion.AIKinematicController 1.3.1.30910
-  controllerType: 3
---- !u!114 &11400014
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -2124519495, guid: 6341f308145306047b757d395c025251, type: 3}
-  m_Name: 
-  rainVersionString: RAIN.Core.RAINAgent 1.3.1.30910
-  avatar: {fileID: 100014}
-  mind: {fileID: 11400008}
-  maxSpeed: 3.5
-  maxAcceleration: 1
-  ApplyMaxToYAxis: 0
-  maxRotationRate: 270
-  maxAngularAcceleration: 90
-  stepUpHeight: .5
 --- !u!114 &11400016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1135,21 +819,6 @@ MonoBehaviour:
   _layersChecked:
     serializedVersion: 2
     m_Bits: 2048
---- !u!114 &11400020
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7437c9e6603c404bb91cbc45fe71c78, type: 3}
-  m_Name: 
-  _drawGizmos: 1
-  _center: {x: 0, y: 0, z: 0}
-  _scaledCenter: {x: 0, y: 0, z: 0}
-  _scaledRadius: 1
-  _radius: 1
 --- !u!114 &11400022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1211,18 +880,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   _comfortDistance: 3
---- !u!135 &13500000
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100008}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
