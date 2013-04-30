@@ -1,0 +1,38 @@
+Library class:
+BLStandardAI
+
+Trees:
+	Movement_RandomWander
+	Movement_MoveTo
+	Movement_Pursuit
+	Movement_Flee
+	Detection_GetAttackTarget
+	Detection_GetFriendlyNeighbours
+	Enemies_BuzzSaw
+	Enemies_Attack
+	Unknown
+
+Contexts:
+	Unknown
+
+Branch priority groups:
+	Unknown
+
+Actions (10: 1 - 11):
+	WanderSteering (1)
+	AddPursuit (2)
+	GetAllTargets (3)
+	PickATarget (4)
+	IsWithinAttackRange (5)
+	Attack (6)
+	IsNotWithinAttackRange (7)
+	StopAttack (8)
+	HasTarget (9)
+	HasNoTarget (10)
+	Unknown (11)
+
+Decorators (0: 12 - 12):
+	Unknown (12)
+
+Agent classes:
+	BAStandardAI_BuzzSaw

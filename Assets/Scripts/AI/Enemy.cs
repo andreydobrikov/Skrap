@@ -28,8 +28,6 @@ public class Enemy : MonoBehaviour
 		}
 
 		health = _health;
-		animator = transform.Find("Graphics/mine_bot").GetComponent<Animator>();
-		Debug.Log(animator);
 		InitEnemy();
 	}
 
@@ -44,10 +42,6 @@ public class Enemy : MonoBehaviour
 
 	public void DisableAI()
 	{
-		transform.Find("Path Manager").gameObject.SetActive(false);
-		transform.Find("Sensor").gameObject.SetActive(false);
-		transform.Find("Obstacle Avoidance Collider").gameObject.SetActive(false);
-
 		foreach(var steerer in GetComponents<Steering>())
 		{
 			Destroy(steerer);

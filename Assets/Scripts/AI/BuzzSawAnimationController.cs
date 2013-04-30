@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class BuzzSawController : Enemy
+public class BuzzSawAnimationController : Enemy
 {
 	int directionParamID;
 	int speedParamID;
@@ -9,10 +9,11 @@ public class BuzzSawController : Enemy
 
 	protected override void InitEnemy()
 	{
+		animator = transform.Find("Graphics/mine_bot").GetComponent<Animator>();
+
 		directionParamID = Animator.StringToHash("Direction");
 		speedParamID = Animator.StringToHash("Speed");
 		attackParamID = Animator.StringToHash("Attack");
-
 
 	}
 
