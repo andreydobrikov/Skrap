@@ -1,6 +1,6 @@
 //----------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2012 Tasharen Entertainment
+// Copyright © 2011-2013 Tasharen Entertainment
 //----------------------------------------------
 
 using UnityEngine;
@@ -83,7 +83,13 @@ public class UIDraggablePanel : IgnoreTimeScale
 	/// </summary>
 
 	public bool repositionClipping = false;
-
+	
+	/// <summary>
+	/// Whether to use iOS drag emulation, where the content only drags at half the speed of the touch/mouse movement when the content edge is within the clipping area.
+	/// </summary>	
+	
+	public bool iOSDragEmulation = true;
+	
 	/// <summary>
 	/// Horizontal scrollbar used for visualization.
 	/// </summary>
@@ -220,7 +226,16 @@ public class UIDraggablePanel : IgnoreTimeScale
 	{
 		mTrans = transform;
 		mPanel = GetComponent<UIPanel>();
+		mPanel.onChange += OnPanelChange;
 	}
+
+	void OnDestroy ()
+	{
+		if (mPanel != null)
+			mPanel.onChange -= OnPanelChange;
+	}
+
+	void OnPanelChange () { UpdateScrollbars(true); }
 
 	/// <summary>
 	/// Set the initial drag value and register the listener delegates.
@@ -359,7 +374,7 @@ public class UIDraggablePanel : IgnoreTimeScale
 		DisableSpring();
 
 		Bounds b = bounds;
-		if (b.min.x == b.max.x || b.min.y == b.max.x) return;
+		if (b.min.x == b.max.x || b.min.y == b.max.y) return;
 		Vector4 cr = mPanel.clipRange;
 
 		float hx = cr.z * 0.5f;
@@ -521,7 +536,7 @@ public class UIDraggablePanel : IgnoreTimeScale
 	/// Drag the object along the plane.
 	/// </summary>
 
-	public void Drag (Vector2 delta)
+	public void Drag ()
 	{
 		if (enabled && NGUITools.GetActive(gameObject) && mShouldMove)
 		{
@@ -558,18 +573,23 @@ public class UIDraggablePanel : IgnoreTimeScale
 				mMomentum = Vector3.Lerp(mMomentum, mMomentum + offset * (0.01f * momentumAmount), 0.67f);
 
 				// Move the panel
-				//MoveAbsolute(offset);
-
-				Vector3 constraint = mPanel.CalculateConstrainOffset(bounds.min, bounds.max);
-
-				if (constraint.magnitude > 0.001f)
+				if (!iOSDragEmulation)
 				{
-					MoveAbsolute(offset * 0.5f);
-					mMomentum *= 0.5f;
+					MoveAbsolute(offset);	
 				}
 				else
 				{
-					MoveAbsolute(offset);
+					Vector3 constraint = mPanel.CalculateConstrainOffset(bounds.min, bounds.max);
+
+					if (constraint.magnitude > 0.001f)
+					{
+						MoveAbsolute(offset * 0.5f);
+						mMomentum *= 0.5f;
+					}
+					else
+					{
+						MoveAbsolute(offset);
+					}
 				}
 
 				// We want to constrain the UI to be within bounds
@@ -604,9 +624,6 @@ public class UIDraggablePanel : IgnoreTimeScale
 
 	void LateUpdate ()
 	{
-		// If the panel's geometry changed, recalculate the bounds
-		if (mPanel.changedLastFrame) UpdateScrollbars(true);
-
 		// Inspector functionality
 		if (repositionClipping)
 		{
@@ -662,6 +679,7 @@ public class UIDraggablePanel : IgnoreTimeScale
 
 				// Restrict the contents to be within the panel's bounds
 				if (restrictWithinPanel && mPanel.clipping != UIDrawCall.Clipping.None) RestrictWithinBounds(false);
+				if (mMomentum.magnitude < 0.0001f && onDragFinished != null) onDragFinished();
 				return;
 			}
 			else

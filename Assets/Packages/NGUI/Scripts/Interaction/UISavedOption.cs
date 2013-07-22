@@ -1,6 +1,6 @@
 //----------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2012 Tasharen Entertainment
+// Copyright © 2011-2013 Tasharen Entertainment
 //----------------------------------------------
 
 using UnityEngine;
@@ -65,7 +65,7 @@ public class UISavedOption : MonoBehaviour
 		else
 		{
 			string s = PlayerPrefs.GetString(key);
-			UICheckbox[] checkboxes = GetComponentsInChildren<UICheckbox>();
+			UICheckbox[] checkboxes = GetComponentsInChildren<UICheckbox>(true);
 
 			for (int i = 0, imax = checkboxes.Length; i < imax; ++i)
 			{
@@ -83,7 +83,7 @@ public class UISavedOption : MonoBehaviour
 	{
 		if (mCheck == null && mList == null)
 		{
-			UICheckbox[] checkboxes = GetComponentsInChildren<UICheckbox>();
+			UICheckbox[] checkboxes = GetComponentsInChildren<UICheckbox>(true);
 
 			for (int i = 0, imax = checkboxes.Length; i < imax; ++i)
 			{

@@ -127,6 +127,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
 --- !u!1 &50165178
@@ -174,6 +175,10 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 2f2473f73b9ca724f9080d6d76009ea2, type: 2}
   mSpriteName: Button
   mFillCenter: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
 --- !u!1 &141384209
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,6 +262,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
 --- !u!1 &173695488
@@ -312,6 +318,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
 --- !u!1 &247169208
@@ -359,6 +366,10 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 2f2473f73b9ca724f9080d6d76009ea2, type: 2}
   mSpriteName: Button
   mFillCenter: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
 --- !u!1 &248220032
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,6 +413,24 @@ MonoBehaviour:
   generateNormals: 0
   depthPass: 0
   widgetsAreStatic: 0
+  cullWhileDragging: 0
+  worldToLocal:
+    e00: 384
+    e01: 0
+    e02: 0
+    e03: 1218.86011
+    e10: 0
+    e11: 384
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 384
+    e23: 1.70000017
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 1
   mAlpha: 1
   mDebugInfo: 1
   mClipping: 0
@@ -450,6 +479,7 @@ MonoBehaviour:
   panelContainer: {fileID: 0}
   side: 5
   halfPixelOffset: 1
+  runOnlyOnce: 0
   relativeOffset: {x: 0, y: 0}
 --- !u!1 &263438222
 GameObject:
@@ -504,6 +534,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
 --- !u!1 &266796422
@@ -581,6 +612,24 @@ MonoBehaviour:
   generateNormals: 0
   depthPass: 0
   widgetsAreStatic: 0
+  cullWhileDragging: 0
+  worldToLocal:
+    e00: 384
+    e01: 0
+    e02: 0
+    e03: 1218.85999
+    e10: 0
+    e11: 384
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 384
+    e23: 1.70000017
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 1
   mAlpha: 1
   mDebugInfo: 1
   mClipping: 0
@@ -631,6 +680,10 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 2f2473f73b9ca724f9080d6d76009ea2, type: 2}
   mSpriteName: Button
   mFillCenter: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
 --- !u!1 &306577681
 GameObject:
   m_ObjectHideFlags: 0
@@ -677,6 +730,24 @@ MonoBehaviour:
   generateNormals: 0
   depthPass: 0
   widgetsAreStatic: 0
+  cullWhileDragging: 0
+  worldToLocal:
+    e00: 294.720032
+    e01: 0
+    e02: 0
+    e03: 0
+    e10: 0
+    e11: 294.720032
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 294.720032
+    e23: 1.30472565
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 1
   mAlpha: 1
   mDebugInfo: 1
   mClipping: 0
@@ -840,6 +911,10 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 2f2473f73b9ca724f9080d6d76009ea2, type: 2}
   mSpriteName: Light
   mFillCenter: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
 --- !u!1 &380110627
 GameObject:
   m_ObjectHideFlags: 0
@@ -885,6 +960,10 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 2f2473f73b9ca724f9080d6d76009ea2, type: 2}
   mSpriteName: Button
   mFillCenter: 0
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
 --- !u!1 &389883443
 GameObject:
   m_ObjectHideFlags: 0
@@ -928,6 +1007,7 @@ MonoBehaviour:
   panelContainer: {fileID: 0}
   side: 1
   halfPixelOffset: 1
+  runOnlyOnce: 0
   relativeOffset: {x: 0, y: 0}
 --- !u!1 &395648190
 GameObject:
@@ -1244,6 +1324,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
 --- !u!1 &507589870
@@ -1343,6 +1424,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
 --- !u!1 &528281249
@@ -1390,6 +1472,10 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 2f2473f73b9ca724f9080d6d76009ea2, type: 2}
   mSpriteName: Button
   mFillCenter: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
 --- !u!1 &562677331
 GameObject:
   m_ObjectHideFlags: 0
@@ -1435,6 +1521,10 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 2f2473f73b9ca724f9080d6d76009ea2, type: 2}
   mSpriteName: Highlight
   mFillCenter: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
 --- !u!1 &565102668
 GameObject:
   m_ObjectHideFlags: 0
@@ -1488,6 +1578,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
 --- !u!1 &578871077
@@ -1543,6 +1634,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
 --- !u!1 &608595002
@@ -1598,6 +1690,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
 --- !u!1 &609797750
@@ -1747,6 +1840,10 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 2f2473f73b9ca724f9080d6d76009ea2, type: 2}
   mSpriteName: Button
   mFillCenter: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
 --- !u!1 &631586661
 GameObject:
   m_ObjectHideFlags: 0
@@ -1792,6 +1889,10 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 2f2473f73b9ca724f9080d6d76009ea2, type: 2}
   mSpriteName: Button
   mFillCenter: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
 --- !u!1 &634054647
 GameObject:
   m_ObjectHideFlags: 0
@@ -1835,6 +1936,7 @@ MonoBehaviour:
   panelContainer: {fileID: 0}
   side: 0
   halfPixelOffset: 1
+  runOnlyOnce: 0
   relativeOffset: {x: 0, y: 0}
 --- !u!1 &640401491
 GameObject:
@@ -1889,6 +1991,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
 --- !u!1 &640522243
@@ -2144,6 +2247,24 @@ MonoBehaviour:
   generateNormals: 0
   depthPass: 0
   widgetsAreStatic: 0
+  cullWhileDragging: 0
+  worldToLocal:
+    e00: 384
+    e01: 0
+    e02: 0
+    e03: 1218.85999
+    e10: 0
+    e11: 384
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 384
+    e23: 1.70000017
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 1
   mAlpha: 1
   mDebugInfo: 1
   mClipping: 0
@@ -2202,6 +2323,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
 --- !u!1 &695857565
@@ -2307,6 +2429,10 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 2f2473f73b9ca724f9080d6d76009ea2, type: 2}
   mSpriteName: Button
   mFillCenter: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
 --- !u!1 &705907840
 GameObject:
   m_ObjectHideFlags: 0
@@ -2360,6 +2486,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
 --- !u!1 &750878741
@@ -2494,6 +2621,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
 --- !u!1 &777845474
@@ -2549,6 +2677,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
 --- !u!1 &780339798
@@ -2596,6 +2725,10 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 2f2473f73b9ca724f9080d6d76009ea2, type: 2}
   mSpriteName: Dark
   mFillCenter: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
 --- !u!1 &798887599
 GameObject:
   m_ObjectHideFlags: 0
@@ -2639,6 +2772,7 @@ MonoBehaviour:
   panelContainer: {fileID: 0}
   side: 3
   halfPixelOffset: 1
+  runOnlyOnce: 0
   relativeOffset: {x: 0, y: 0}
 --- !u!1 &815780593
 GameObject:
@@ -2693,6 +2827,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
 --- !u!1 &832725896
@@ -2743,6 +2878,7 @@ MonoBehaviour:
   autoCorrect: 0
   useLabelTextAtStart: 0
   activeColor: {r: 1, g: 1, b: 1, a: 1}
+  selectOnTab: {fileID: 0}
   eventReceiver: {fileID: 0}
   functionName: OnSubmit
 --- !u!65 &832725899
@@ -2802,6 +2938,10 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 2f2473f73b9ca724f9080d6d76009ea2, type: 2}
   mSpriteName: Highlight
   mFillCenter: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
 --- !u!1 &871670456
 GameObject:
   m_ObjectHideFlags: 0
@@ -2855,6 +2995,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
 --- !u!1 &881265284
@@ -3010,6 +3151,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
 --- !u!1 &927372686
@@ -3057,6 +3199,10 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 2f2473f73b9ca724f9080d6d76009ea2, type: 2}
   mSpriteName: Button
   mFillCenter: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
 --- !u!1 &936634029
 GameObject:
   m_ObjectHideFlags: 0
@@ -3102,6 +3248,10 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 2f2473f73b9ca724f9080d6d76009ea2, type: 2}
   mSpriteName: Light
   mFillCenter: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
 --- !u!1 &940549626
 GameObject:
   m_ObjectHideFlags: 0
@@ -3147,6 +3297,10 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 2f2473f73b9ca724f9080d6d76009ea2, type: 2}
   mSpriteName: Highlight
   mFillCenter: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
 --- !u!1 &953110421
 GameObject:
   m_ObjectHideFlags: 0
@@ -3192,6 +3346,10 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 2f2473f73b9ca724f9080d6d76009ea2, type: 2}
   mSpriteName: Button
   mFillCenter: 0
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
 --- !u!1 &981044460
 GameObject:
   m_ObjectHideFlags: 0
@@ -3240,8 +3398,9 @@ MonoBehaviour:
   autoCorrect: 0
   useLabelTextAtStart: 0
   activeColor: {r: 1, g: 1, b: 1, a: 1}
-  eventReceiver: {fileID: 0}
-  functionName: OnSubmit
+  selectOnTab: {fileID: 0}
+  eventReceiver: {fileID: 1477066114}
+  functionName: HandleTextBoxSubmit
 --- !u!65 &981044463
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3307,6 +3466,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
 --- !u!1 &986695024
@@ -3354,6 +3514,10 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 2f2473f73b9ca724f9080d6d76009ea2, type: 2}
   mSpriteName: Button
   mFillCenter: 0
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
 --- !u!1 &992713981
 GameObject:
   m_ObjectHideFlags: 0
@@ -3397,6 +3561,7 @@ MonoBehaviour:
   panelContainer: {fileID: 0}
   side: 7
   halfPixelOffset: 1
+  runOnlyOnce: 0
   relativeOffset: {x: 0, y: .600000024}
 --- !u!1 &996698354
 GameObject:
@@ -3446,6 +3611,7 @@ MonoBehaviour:
   autoCorrect: 0
   useLabelTextAtStart: 0
   activeColor: {r: 1, g: 1, b: 1, a: 1}
+  selectOnTab: {fileID: 0}
   eventReceiver: {fileID: 0}
   functionName: OnSubmit
 --- !u!65 &996698357
@@ -3505,6 +3671,10 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 2f2473f73b9ca724f9080d6d76009ea2, type: 2}
   mSpriteName: Button
   mFillCenter: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
 --- !u!1 &1003935364
 GameObject:
   m_ObjectHideFlags: 0
@@ -3558,6 +3728,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
 --- !u!1 &1007104394
@@ -3608,6 +3779,7 @@ MonoBehaviour:
   autoCorrect: 0
   useLabelTextAtStart: 0
   activeColor: {r: 1, g: 1, b: 1, a: 1}
+  selectOnTab: {fileID: 0}
   eventReceiver: {fileID: 0}
   functionName: OnSubmit
 --- !u!65 &1007104397
@@ -3667,6 +3839,10 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 2f2473f73b9ca724f9080d6d76009ea2, type: 2}
   mSpriteName: Dark
   mFillCenter: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
 --- !u!1 &1031936847
 GameObject:
   m_ObjectHideFlags: 0
@@ -3833,6 +4009,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
 --- !u!1 &1069627491
@@ -3888,6 +4065,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
 --- !u!1 &1090228596
@@ -3938,6 +4116,7 @@ MonoBehaviour:
   autoCorrect: 0
   useLabelTextAtStart: 0
   activeColor: {r: 1, g: 1, b: 1, a: 1}
+  selectOnTab: {fileID: 0}
   eventReceiver: {fileID: 0}
   functionName: OnSubmit
 --- !u!65 &1090228599
@@ -4026,6 +4205,10 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 2f2473f73b9ca724f9080d6d76009ea2, type: 2}
   mSpriteName: Button
   mFillCenter: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
 --- !u!1 &1127315235
 GameObject:
   m_ObjectHideFlags: 0
@@ -4079,6 +4262,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
 --- !u!1 &1145777461
@@ -4126,6 +4310,10 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 2f2473f73b9ca724f9080d6d76009ea2, type: 2}
   mSpriteName: Button
   mFillCenter: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
 --- !u!1 &1173039956
 GameObject:
   m_ObjectHideFlags: 0
@@ -4250,6 +4438,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
 --- !u!1 &1227839225
@@ -4326,6 +4515,24 @@ MonoBehaviour:
   generateNormals: 0
   depthPass: 0
   widgetsAreStatic: 0
+  cullWhileDragging: 0
+  worldToLocal:
+    e00: 384
+    e01: 0
+    e02: 0
+    e03: 0
+    e10: 0
+    e11: 384
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 384
+    e23: 0
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 1
   mAlpha: 1
   mDebugInfo: 1
   mClipping: 0
@@ -4374,6 +4581,7 @@ MonoBehaviour:
   panelContainer: {fileID: 0}
   side: 8
   halfPixelOffset: 1
+  runOnlyOnce: 0
   relativeOffset: {x: 0, y: 0}
 --- !u!1 &1242414895
 GameObject:
@@ -4418,6 +4626,7 @@ MonoBehaviour:
   panelContainer: {fileID: 0}
   side: 1
   halfPixelOffset: 1
+  runOnlyOnce: 0
   relativeOffset: {x: 0, y: 0}
 --- !u!1 &1243915274
 GameObject:
@@ -4464,6 +4673,10 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 2f2473f73b9ca724f9080d6d76009ea2, type: 2}
   mSpriteName: Highlight
   mFillCenter: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
 --- !u!1 &1250574656
 GameObject:
   m_ObjectHideFlags: 0
@@ -4509,6 +4722,10 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 2f2473f73b9ca724f9080d6d76009ea2, type: 2}
   mSpriteName: Bright
   mFillCenter: 0
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
 --- !u!1 &1258677811
 GameObject:
   m_ObjectHideFlags: 0
@@ -4565,6 +4782,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
 --- !u!1 &1266636200
@@ -4620,6 +4838,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
 --- !u!1 &1268805568
@@ -4675,6 +4894,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
 --- !u!1 &1296482457
@@ -4730,6 +4950,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
 --- !u!1 &1300878574
@@ -4785,6 +5006,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
 --- !u!1 &1302469128
@@ -4832,6 +5054,10 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 2f2473f73b9ca724f9080d6d76009ea2, type: 2}
   mSpriteName: Button
   mFillCenter: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
 --- !u!1 &1338940856
 GameObject:
   m_ObjectHideFlags: 0
@@ -4877,6 +5103,10 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 2f2473f73b9ca724f9080d6d76009ea2, type: 2}
   mSpriteName: Button
   mFillCenter: 0
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
 --- !u!1 &1341961636
 GameObject:
   m_ObjectHideFlags: 0
@@ -4930,6 +5160,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
 --- !u!1 &1378089012
@@ -4985,6 +5216,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
 --- !u!1 &1385053387
@@ -5127,6 +5359,10 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 2f2473f73b9ca724f9080d6d76009ea2, type: 2}
   mSpriteName: Highlight
   mFillCenter: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
 --- !u!1 &1451852804
 GameObject:
   m_ObjectHideFlags: 0
@@ -5180,6 +5416,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
 --- !u!1 &1469560627
@@ -5235,6 +5472,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
 --- !u!1 &1477066114
@@ -5337,6 +5575,24 @@ MonoBehaviour:
   generateNormals: 0
   depthPass: 0
   widgetsAreStatic: 0
+  cullWhileDragging: 0
+  worldToLocal:
+    e00: 384
+    e01: 0
+    e02: 0
+    e03: 1218.85999
+    e10: 0
+    e11: 384
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 384
+    e23: 1.70000017
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 1
   mAlpha: 1
   mDebugInfo: 1
   mClipping: 0
@@ -5395,6 +5651,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
 --- !u!1 &1499255767
@@ -5445,6 +5702,7 @@ MonoBehaviour:
   autoCorrect: 0
   useLabelTextAtStart: 0
   activeColor: {r: 1, g: 1, b: 1, a: 1}
+  selectOnTab: {fileID: 0}
   eventReceiver: {fileID: 0}
   functionName: OnSubmit
 --- !u!65 &1499255770
@@ -5756,6 +6014,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
 --- !u!1 &1580831036
@@ -5799,6 +6058,24 @@ MonoBehaviour:
   generateNormals: 0
   depthPass: 0
   widgetsAreStatic: 0
+  cullWhileDragging: 0
+  worldToLocal:
+    e00: .999935985
+    e01: 0
+    e02: 0
+    e03: 1218.85999
+    e10: 0
+    e11: .999935985
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: .999935985
+    e23: .00442680065
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 1
   mAlpha: 1
   mDebugInfo: 1
   mClipping: 0
@@ -5999,6 +6276,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
 --- !u!1 &1660506234
@@ -6054,6 +6332,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
 --- !u!1 &1694549018
@@ -6101,6 +6380,10 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 2f2473f73b9ca724f9080d6d76009ea2, type: 2}
   mSpriteName: Button
   mFillCenter: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
 --- !u!1 &1778168254
 GameObject:
   m_ObjectHideFlags: 0
@@ -6146,6 +6429,10 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 2f2473f73b9ca724f9080d6d76009ea2, type: 2}
   mSpriteName: Button
   mFillCenter: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
 --- !u!1 &1781255395
 GameObject:
   m_ObjectHideFlags: 0
@@ -6261,6 +6548,7 @@ GameObject:
   - 4: {fileID: 1788662705}
   - 65: {fileID: 1788662707}
   - 114: {fileID: 1788662706}
+  - 114: {fileID: 1788662708}
   m_Layer: 8
   m_Name: UsernameInput
   m_TagString: Untagged
@@ -6299,6 +6587,7 @@ MonoBehaviour:
   autoCorrect: 0
   useLabelTextAtStart: 0
   activeColor: {r: 1, g: 1, b: 1, a: 1}
+  selectOnTab: {fileID: 981044460}
   eventReceiver: {fileID: 0}
   functionName: OnSubmit
 --- !u!65 &1788662707
@@ -6313,6 +6602,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 200, y: 33.9951057, z: 0}
   m_Center: {x: 100, y: 0, z: -.75000006}
+--- !u!114 &1788662708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1788662704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 396530a0e33debf4cbf0fb836d77eb01, type: 3}
+  m_Name: 
+  logic: 4
 --- !u!1 &1801696573
 GameObject:
   m_ObjectHideFlags: 0
@@ -6357,6 +6657,24 @@ MonoBehaviour:
   generateNormals: 0
   depthPass: 0
   widgetsAreStatic: 0
+  cullWhileDragging: 0
+  worldToLocal:
+    e00: 384
+    e01: 0
+    e02: 0
+    e03: 1218.85999
+    e10: 0
+    e11: 384
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 384
+    e23: 1.70000017
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 1
   mAlpha: 1
   mDebugInfo: 1
   mClipping: 0
@@ -6407,6 +6725,10 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 2f2473f73b9ca724f9080d6d76009ea2, type: 2}
   mSpriteName: Highlight
   mFillCenter: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
 --- !u!1 &1831277103
 GameObject:
   m_ObjectHideFlags: 0
@@ -6450,6 +6772,7 @@ MonoBehaviour:
   panelContainer: {fileID: 0}
   side: 8
   halfPixelOffset: 1
+  runOnlyOnce: 0
   relativeOffset: {x: 0, y: 0}
 --- !u!1 &1841212420
 GameObject:
@@ -6606,6 +6929,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
 --- !u!1 &1855965796
@@ -6653,6 +6977,10 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 2f2473f73b9ca724f9080d6d76009ea2, type: 2}
   mSpriteName: Dark
   mFillCenter: 0
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
 --- !u!1 &1857844675
 GameObject:
   m_ObjectHideFlags: 0
@@ -6714,12 +7042,15 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
   m_Name: 
-  sceneViewID: 1
+  subId: 1
+  ownerId: 0
+  group: 0
+  prefixBackup: -1
   observed: {fileID: 0}
   synchronization: 0
-  group: 0
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
+  instantiationId: 0
 --- !u!114 &1857844680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6742,12 +7073,6 @@ MonoBehaviour:
     width: 200
     height: 50
   WindowId: 100
-  connectionStateRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
 --- !u!1 &1866364283
 GameObject:
   m_ObjectHideFlags: 0
@@ -6903,6 +7228,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
 --- !u!1 &1903650303
@@ -6987,6 +7313,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
 --- !u!1 &1935404529
@@ -7034,6 +7361,10 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 2f2473f73b9ca724f9080d6d76009ea2, type: 2}
   mSpriteName: Highlight
   mFillCenter: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
 --- !u!1 &1938103952
 GameObject:
   m_ObjectHideFlags: 0
@@ -7079,6 +7410,10 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 2f2473f73b9ca724f9080d6d76009ea2, type: 2}
   mSpriteName: Button
   mFillCenter: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
 --- !u!1 &1940559220
 GameObject:
   m_ObjectHideFlags: 0
@@ -7124,6 +7459,10 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 2f2473f73b9ca724f9080d6d76009ea2, type: 2}
   mSpriteName: Highlight
   mFillCenter: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
 --- !u!1 &1941278722
 GameObject:
   m_ObjectHideFlags: 0
@@ -7282,6 +7621,10 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 2f2473f73b9ca724f9080d6d76009ea2, type: 2}
   mSpriteName: Button
   mFillCenter: 0
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
 --- !u!1 &1991093264
 GameObject:
   m_ObjectHideFlags: 0
@@ -7429,6 +7772,10 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 2f2473f73b9ca724f9080d6d76009ea2, type: 2}
   mSpriteName: Highlight
   mFillCenter: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
 --- !u!1 &2014894851
 GameObject:
   m_ObjectHideFlags: 0
@@ -7482,6 +7829,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
 --- !u!1 &2022940660
@@ -7527,6 +7875,7 @@ MonoBehaviour:
   panelContainer: {fileID: 0}
   side: 6
   halfPixelOffset: 1
+  runOnlyOnce: 0
   relativeOffset: {x: 0, y: .600000024}
 --- !u!1 &2050144762
 GameObject:
@@ -7574,6 +7923,24 @@ MonoBehaviour:
   generateNormals: 0
   depthPass: 0
   widgetsAreStatic: 0
+  cullWhileDragging: 0
+  worldToLocal:
+    e00: 294.720032
+    e01: 0
+    e02: 0
+    e03: 959.375061
+    e10: 0
+    e11: 294.720032
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 294.720032
+    e23: 1.3047502
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 1
   mAlpha: 1
   mDebugInfo: 1
   mClipping: 0
@@ -7659,6 +8026,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
 --- !u!1 &2079107364
@@ -7736,6 +8104,24 @@ MonoBehaviour:
   generateNormals: 0
   depthPass: 0
   widgetsAreStatic: 0
+  cullWhileDragging: 0
+  worldToLocal:
+    e00: 384
+    e01: 0
+    e02: 0
+    e03: 1218.85999
+    e10: 0
+    e11: 384
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 384
+    e23: 1.70000017
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 1
   mAlpha: 1
   mDebugInfo: 1
   mClipping: 0
@@ -7822,6 +8208,10 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 2f2473f73b9ca724f9080d6d76009ea2, type: 2}
   mSpriteName: Highlight
   mFillCenter: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
 --- !u!1 &2100620525
 GameObject:
   m_ObjectHideFlags: 0
@@ -7875,6 +8265,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
 --- !u!1 &2123894032
@@ -7922,6 +8313,10 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 2f2473f73b9ca724f9080d6d76009ea2, type: 2}
   mSpriteName: Light
   mFillCenter: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
 --- !u!1 &2127917998
 GameObject:
   m_ObjectHideFlags: 0
@@ -7967,6 +8362,10 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 2f2473f73b9ca724f9080d6d76009ea2, type: 2}
   mSpriteName: Highlight
   mFillCenter: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
 --- !u!1 &2131039185
 GameObject:
   m_ObjectHideFlags: 0
@@ -8020,6 +8419,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
 --- !u!1 &2144976439
@@ -8063,6 +8463,24 @@ MonoBehaviour:
   generateNormals: 0
   depthPass: 0
   widgetsAreStatic: 0
+  cullWhileDragging: 0
+  worldToLocal:
+    e00: 384
+    e01: 0
+    e02: 0
+    e03: 1218.85999
+    e10: 0
+    e11: 384
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 384
+    e23: 1.70000017
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 1
   mAlpha: 1
   mDebugInfo: 1
   mClipping: 0

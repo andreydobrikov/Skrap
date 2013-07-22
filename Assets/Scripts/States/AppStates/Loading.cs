@@ -29,7 +29,7 @@ public class Loading : State<AppController>
 	{
 		if (asyncOp == null)
 			return;
-
+		Debug.Log(PhotonNetwork.connectionState);
 		owner.loadingBar.sliderValue = asyncOp.progress;
 		if(PhotonNetwork.connected)
 			owner.PhotonView.RPC("UpdateReadyProgress", PhotonTargets.AllBuffered, asyncOp.progress, PhotonNetwork.player.name);

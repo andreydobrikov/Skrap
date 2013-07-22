@@ -1,6 +1,6 @@
 //----------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2012 Tasharen Entertainment
+// Copyright © 2011-2013 Tasharen Entertainment
 //----------------------------------------------
 
 using UnityEngine;
@@ -52,7 +52,7 @@ public class TweenAlpha : UITweener
 	/// Interpolate and update the alpha.
 	/// </summary>
 
-	override protected void OnUpdate (float factor, bool isFinished) { alpha = Mathf.Lerp(from, to, factor); }
+	protected override void OnUpdate (float factor, bool isFinished) { alpha = Mathf.Lerp(from, to, factor); }
 
 	/// <summary>
 	/// Start the tweening operation.

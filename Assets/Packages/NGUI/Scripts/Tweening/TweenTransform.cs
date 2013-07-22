@@ -1,6 +1,6 @@
 ﻿//----------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2012 Tasharen Entertainment
+// Copyright © 2011-2013 Tasharen Entertainment
 //----------------------------------------------
 
 using UnityEngine;
@@ -25,7 +25,7 @@ public class TweenTransform : UITweener
 	/// Interpolate the position, scale, and rotation.
 	/// </summary>
 
-	override protected void OnUpdate (float factor, bool isFinished)
+	protected override void OnUpdate (float factor, bool isFinished)
 	{
 		if (to != null)
 		{

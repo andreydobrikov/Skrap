@@ -1,6 +1,6 @@
 //----------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2012 Tasharen Entertainment
+// Copyright © 2011-2013 Tasharen Entertainment
 //----------------------------------------------
 
 using UnityEditor;
@@ -134,7 +134,8 @@ public class SpriteSelector : ScriptableWizard
 									mSprite.MakePixelPerfect();
 									EditorUtility.SetDirty(mSprite.gameObject);
 								}
-								else if (mCallback != null)
+								
+								if (mCallback != null)
 								{
 									mName = sprite.name;
 									mCallback(sprite.name);

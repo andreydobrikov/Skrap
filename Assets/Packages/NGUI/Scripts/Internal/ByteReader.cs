@@ -1,6 +1,6 @@
 ﻿//----------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2012 Tasharen Entertainment
+// Copyright © 2011-2013 Tasharen Entertainment
 //----------------------------------------------
 
 using UnityEngine;
@@ -146,6 +146,7 @@ public class ByteReader
 		{
 			string line = ReadLine();
 			if (line == null) break;
+			if (line.StartsWith("//")) continue;
 
 #if UNITY_FLASH
 			string[] split = line.Split(separator, System.StringSplitOptions.RemoveEmptyEntries);
@@ -156,7 +157,7 @@ public class ByteReader
 			if (split.Length == 2)
 			{
 				string key = split[0].Trim();
-				string val = split[1].Trim();
+				string val = split[1].Trim().Replace("\\n", "\n");
 				dict[key] = val;
 			}
 		}

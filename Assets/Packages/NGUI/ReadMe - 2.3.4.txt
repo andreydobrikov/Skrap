@@ -1,7 +1,7 @@
 ----------------------------------------------
             NGUI: Next-Gen UI kit
  Copyright © 2011-2012 Tasharen Entertainment
-                Version 2.3.4
+                Version 2.6.3
     http://www.tasharen.com/?page_id=197
             support@tasharen.com
 ----------------------------------------------
@@ -34,6 +34,88 @@ Using NGUI with JavaScript (UnityScript)? Read this first: http://www.tasharen.c
 -----------------
  Version History
 -----------------
+
+2.6.3:
+- NEW: Noticeably improved performance and garbage collection when using Unity 4.1+
+- NEW: It's now possible to select sprites in the Atlas Maker for preview purposes.
+- NEW: Transform inspector will now warn you when widget panel is marked as 'static'.
+- NEW: You can now toggle the panel's "widgets are static" flag from within the panel tool.
+- FIX: Widgets will no longer be constantly checking for layer changes in update.
+- FIX: Shrink-to-fit labels will now auto-grow when possible.
+- FIX: Labels can no longer be resized using handles (but can still be moved and rotated).
+- FIX: Labels will now auto-adjust their size properly when the max width gets adjusted.
+- FIX: Creating an atlas would rarely throw a null exception. This has been fixed.
+- FIX: Draggable panel + non-sticky keys will now mix properly.
+- FIX: Drag & drop should now work with non-sticky press.
+- FIX: Flash export should now work again.
+- DEL: Dropped all remaining support for Unity 3.4.
+
+2.6.2:
+- NEW: You can now automatically apply alpha pre-multiplication to textures when creating an atlas.
+- NEW: Added UIWidget.Raycast to perform a raycast without using colliders.
+- NEW: Added a texture preview to UITexture.
+- NEW: Added an option to UIAnchor to run only once, and then destroy itself. Also optimized it slightly.
+- NEW: Transform inspector will now gray out fields that are not commonly used by the UI when a widget is selected.
+- FIX: Transform multi-object editing was not quite right for widgets...
+- FIX: "Shrink to fit" option on labels now works vertically, not just horizontally.
+- FIX: Changing a sprite in inspector will no longer auto-resize it. Use MakePixelPerfect to resize it.
+
+2.6.1:
+- FIX: Dynamic font-related fixes.
+- FIX: Depth pass will now be force-disabled when the panel is clipped.
+- FIX: Sticky press option on the UICamera no longer breaks OnDrop events.
+- FIX: UIInput's useLabelTextAtStart should now work again.
+- FIX: UICamera.touchCount should now be accurate.
+- FIX: Fixed a typo in the image button inspector.
+- FIX: UIWidget.UpdateGeometry will now check for object's disabled state prior to filling the geometry.
+
+2.6.0
+- NEW: Added dynamic font support for Unity 4.0.
+- NEW: Handles can now be toggled on/off from the NGUI menu.
+- NEW: Atlas maker will now be limited by max texture size, and will no longer make it possible to corrupt an atlas.
+- NEW: Warning will be shown on the panel if clipping is not possible (GLES 1.1).
+- NEW: Checkbox can now have fade in the checkmark instantly.
+- NEW: You can now leave C++ style comments (//) in the localization files.
+- NEW: You can now paste into input fields in stand-alone builds.
+- NEW: Added disabled state to UIImageButton (Nicki)
+- FIX: UISlider will now use the sprite size rather than collider size to determine the touch effect area.
+- FIX: Resetting the tween will now mark it as not started.
+- FIX: Blank labels will no longer be localized.
+- FIX: Resetting the sprite animation will also reset the sprite back to 0.
+
+2.5.1
+- NEW: Added a "shrink to fit" option for labels that will scale down the text if it doesn't fit.
+- FIX: Re-added the "import font" field in the font inspector.
+
+2.5.0
+- DEL: Deprecated Unity 3.5.4 and earlier support. If you are using 3.5.4 or earlier, DO NOT UPDATE!
+- OLD: Sliced, tiled, and filled sprites have been deprecated.
+- NEW: Regular sprite now has options for how the sprite is drawn.
+- NEW: NGUI widgets now have visual placement handles.
+- NEW: Adding a widget now automatically creates a UI hierarchy if one is not present.
+- NEW: NGUI menu has been redesigned with new options and shortcut keys.
+- FIX: Widget selection box now takes padding into account properly.
+- FIX: Changing the pivot no longer moves the widget visually.
+- FIX: Font symbols now use padding instead of inner rect for offset.
+- FIX: Font symbols no longer need to be used in the editor before they are usable in-game.
+- FIX: More fixes to how tweens get initialized/started.
+- FIX: Re-added UISlider.fullSize property for better backwards compatibility.
+- FIX: Unity 4.1-related fixes.
+- FIX: Variety of other minor tweaks and changes.
+
+2.3.6
+- NEW: Added a much easier way to add symbols and emoticons (select the font, you will see it).
+- NEW: Added a couple of conditional warnings to the UIPanel warning of common mistakes.
+- NEW: Various improvements to widget and sprite inspectors.
+- FIX: There is no need to display the "symbols" option on the labels if the font doesn't have any.
+- FIX: Removed the hard-coded screen height-based touch threshold on the UICamera.
+- FIX: Removed the need for sliders to have a "full size" property.
+
+2.3.5:
+- NEW: Font symbols can now have an offset for easier positioning.
+- FIX: UISlider will now set the 'current' property before calling the delegate.
+- FIX: Fixed the checkbox animation issue that was brought to light as a result of 2.3.4.
+- FIX: Minor other tweaks, nothing important.
 
 2.3.4:
 - NEW: Added the ability to easily copy/paste widget colors in the inspector.

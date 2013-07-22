@@ -1,12 +1,20 @@
 //----------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2012 Tasharen Entertainment
+// Copyright © 2011-2013 Tasharen Entertainment
 //----------------------------------------------
+
+#if UNITY_FLASH || UNITY_WP8 || UNITY_METRO
+#define USE_SIMPLE_DICTIONARY
+#endif
+
+#if UNITY_3_5 || UNITY_4_0
+#define OLD_UNITY
+#endif
 
 using UnityEngine;
 using System.Collections.Generic;
 
-#if !UNITY_FLASH
+#if !USE_SIMPLE_DICTIONARY
 using System.Collections.Specialized;
 #endif
 
@@ -24,6 +32,14 @@ public class UIPanel : MonoBehaviour
 		Gizmos,
 		Geometry,
 	}
+
+	public delegate void OnChangeDelegate ();
+
+	/// <summary>
+	/// Notification triggered when something changes within the panel.
+	/// </summary>
+
+	public OnChangeDelegate onChange;
 
 	/// <summary>
 	/// Whether this panel will show up in the panel tool (set this to 'false' for dynamically created temporary panels)
@@ -51,6 +67,19 @@ public class UIPanel : MonoBehaviour
 
 	public bool widgetsAreStatic = false;
 
+	/// <summary>
+	/// Whether widgets will be culled while the panel is being dragged.
+	/// Having this on improves performance, but turning it off will reduce garbage collection.
+	/// </summary>
+
+	public bool cullWhileDragging = false;
+
+	/// <summary>
+	/// Matrix that will transform the specified world coordinates to relative-to-panel coordinates.
+	/// </summary>
+
+	[HideInInspector] public Matrix4x4 worldToLocal = Matrix4x4.identity;
+
 	// Panel's alpha (affects the alpha of all widgets)
 	[HideInInspector][SerializeField] float mAlpha = 1f;
 
@@ -62,13 +91,16 @@ public class UIPanel : MonoBehaviour
 	[HideInInspector][SerializeField] Vector4 mClipRange = Vector4.zero;
 	[HideInInspector][SerializeField] Vector2 mClipSoftness = new Vector2(40f, 40f);
 
+#if OLD_UNITY
 	// List of managed transforms
-#if UNITY_FLASH
+#if USE_SIMPLE_DICTIONARY
 	Dictionary<Transform, UINode> mChildren = new Dictionary<Transform, UINode>();
 #else
 	OrderedDictionary mChildren = new OrderedDictionary();
 #endif
-
+	// When traversing through the child dictionary, deleted values are stored here
+	List<Transform> mRemoved = new List<Transform>();
+#endif
 	// List of all widgets managed by this panel
 	BetterList<UIWidget> mWidgets = new BetterList<UIWidget>();
 
@@ -83,36 +115,33 @@ public class UIPanel : MonoBehaviour
 	BetterList<Vector3> mNorms = new BetterList<Vector3>();
 	BetterList<Vector4> mTans = new BetterList<Vector4>();
 	BetterList<Vector2> mUvs = new BetterList<Vector2>();
-#if UNITY_3_5_4
-	BetterList<Color> mCols = new BetterList<Color>();
-#else
 	BetterList<Color32> mCols = new BetterList<Color32>();
-#endif
 
+	GameObject mGo;
 	Transform mTrans;
 	Camera mCam;
 	int mLayer = -1;
 	bool mDepthChanged = false;
+#if OLD_UNITY
 	bool mRebuildAll = false;
-	bool mChangedLastFrame = false;
 	bool mWidgetsAdded = false;
 
+	// Whether the panel should check the visibility of its widgets (set when the clip range changes).
+	bool mCheckVisibility = false;
+	bool mCulled = false;
+#endif
+
+	float mCullTime = 0f;
 	float mUpdateTime = 0f;
 	float mMatrixTime = 0f;
-	Matrix4x4 mWorldToLocal = Matrix4x4.identity;
 
 	// Values used for visibility checks
 	static float[] mTemp = new float[4];
 	Vector2 mMin = Vector2.zero;
 	Vector2 mMax = Vector2.zero;
 
-	// When traversing through the child dictionary, deleted values are stored here
-	List<Transform> mRemoved = new List<Transform>();
-
-	// Whether the panel should check the visibility of its widgets (set when the clip range changes).
-	bool mCheckVisibility = false;
-	float mCullTime = 0f;
-	bool mCulled = false;
+	// Used for SetAlphaRecursive()
+	UIPanel[] mChildPanels;
 
 #if UNITY_EDITOR
 	// Screen size, saved for gizmos, since Screen.width and Screen.height returns the Scene view's dimensions in OnDrawGizmos.
@@ -120,16 +149,16 @@ public class UIPanel : MonoBehaviour
 #endif
 
 	/// <summary>
-	/// Cached for speed.
+	/// Cached for speed. Can't simply return 'mGo' set in Awake because this function may be called on a prefab.
+	/// </summary>
+
+	public GameObject cachedGameObject { get { if (mGo == null) mGo = gameObject; return mGo; } }
+
+	/// <summary>
+	/// Cached for speed. Can't simply return 'mTrans' set in Awake because this function may be called on a prefab.
 	/// </summary>
 
 	public Transform cachedTransform { get { if (mTrans == null) mTrans = transform; return mTrans; } }
-
-	/// <summary>
-	/// Whether the panel's geometry has changed in the past (or current) frame.
-	/// </summary>
-
-	public bool changedLastFrame { get { return mChangedLastFrame; } }
 
 	/// <summary>
 	/// Panel's alpha affects everything drawn by the panel.
@@ -148,8 +177,9 @@ public class UIPanel : MonoBehaviour
 			if (mAlpha != val)
 			{
 				mAlpha = val;
+#if OLD_UNITY
 				mCheckVisibility = true;
-
+#endif
 				for (int i = 0; i < mDrawCalls.size; ++i)
 				{
 					UIDrawCall dc = mDrawCalls[i];
@@ -162,6 +192,18 @@ public class UIPanel : MonoBehaviour
 				}
 			}
 		}
+	}
+
+	/// <summary>
+	/// Recursively set the alpha for this panel and all of its children.
+	/// </summary>
+
+	public void SetAlphaRecursive (float val, bool rebuildList)
+	{
+		if (rebuildList || mChildPanels == null)
+			mChildPanels = GetComponentsInChildren<UIPanel>(true);
+		for (int i = 0, imax = mChildPanels.Length; i < imax; ++i)
+			mChildPanels[i].alpha = val;
 	}
 
 	/// <summary>
@@ -208,7 +250,9 @@ public class UIPanel : MonoBehaviour
 		{
 			if (mClipping != value)
 			{
+#if OLD_UNITY
 				mCheckVisibility = true;
+#endif
 				mClipping = value;
 				mMatrixTime = 0f;
 				UpdateDrawcalls();
@@ -231,7 +275,9 @@ public class UIPanel : MonoBehaviour
 			if (mClipRange != value)
 			{
 				mCullTime = (mCullTime == 0f) ? 0.001f : Time.realtimeSinceStartup + 0.15f;
+#if OLD_UNITY
 				mCheckVisibility = true;
+#endif
 				mClipRange = value;
 				mMatrixTime = 0f;
 				UpdateDrawcalls();
@@ -268,6 +314,7 @@ public class UIPanel : MonoBehaviour
 		}
 	}
 
+#if OLD_UNITY
 	/// <summary>
 	/// Helper function to retrieve the node of the specified transform.
 	/// </summary>
@@ -275,13 +322,14 @@ public class UIPanel : MonoBehaviour
 	UINode GetNode (Transform t)
 	{
 		UINode node = null;
-#if UNITY_FLASH
+#if USE_SIMPLE_DICTIONARY
 		if (t != null) mChildren.TryGetValue(t, out node);
 #else
 		if (t != null && mChildren.Contains(t)) node = (UINode)mChildren[t];
 #endif
 		return node;
 	}
+#endif
 
 	/// <summary>
 	/// Returns whether the specified rectangle is visible by the panel. The coordinates must be in world space.
@@ -292,10 +340,10 @@ public class UIPanel : MonoBehaviour
 		UpdateTransformMatrix();
 
 		// Transform the specified points from world space to local space
-		a = mWorldToLocal.MultiplyPoint3x4(a);
-		b = mWorldToLocal.MultiplyPoint3x4(b);
-		c = mWorldToLocal.MultiplyPoint3x4(c);
-		d = mWorldToLocal.MultiplyPoint3x4(d);
+		a = worldToLocal.MultiplyPoint3x4(a);
+		b = worldToLocal.MultiplyPoint3x4(b);
+		c = worldToLocal.MultiplyPoint3x4(c);
+		d = worldToLocal.MultiplyPoint3x4(d);
 
 		mTemp[0] = a.x;
 		mTemp[1] = b.x;
@@ -330,7 +378,7 @@ public class UIPanel : MonoBehaviour
 		if (mClipping == UIDrawCall.Clipping.None) return true;
 		UpdateTransformMatrix();
 
-		Vector3 pos = mWorldToLocal.MultiplyPoint3x4(worldPos);
+		Vector3 pos = worldToLocal.MultiplyPoint3x4(worldPos);
 		if (pos.x < mMin.x) return false;
 		if (pos.y < mMin.y) return false;
 		if (pos.x > mMax.x) return false;
@@ -345,7 +393,7 @@ public class UIPanel : MonoBehaviour
 	public bool IsVisible (UIWidget w)
 	{
 		if (mAlpha < 0.001f) return false;
-		if (!w.enabled || !NGUITools.GetActive(w.gameObject) || w.alpha < 0.001f) return false;
+		if (!w.enabled || !NGUITools.GetActive(w.cachedGameObject) || w.alpha < 0.001f) return false;
 
 		// No clipping? No point in checking.
 		if (mClipping == UIDrawCall.Clipping.None) return true;
@@ -375,22 +423,19 @@ public class UIPanel : MonoBehaviour
 		if (mat != null)
 		{
 			if (sort) mDepthChanged = true;
-
 			if (!mChanged.Contains(mat))
-			{
 				mChanged.Add(mat);
-				mChangedLastFrame = true;
-			}
 		}
 	}
 
+#if OLD_UNITY
 	/// <summary>
 	/// Whether the specified transform is being watched by the panel.
 	/// </summary>
 
 	public bool WatchesTransform (Transform t)
 	{
-#if UNITY_FLASH
+#if USE_SIMPLE_DICTIONARY
 		return t == cachedTransform || mChildren.ContainsKey(t);
 #else
 		return t == cachedTransform || mChildren.Contains(t);
@@ -409,18 +454,17 @@ public class UIPanel : MonoBehaviour
 		// Add transforms all the way up to the panel
 		while (t != null && t != cachedTransform)
 		{
-			// If the node is already managed, we're done
-#if UNITY_FLASH
+#if USE_SIMPLE_DICTIONARY
 			if (mChildren.TryGetValue(t, out node))
 			{
-				if (retVal == null) retVal = node;
-				break;
+				if (retVal == null)
+					retVal = node;
 			}
 #else
 			if (mChildren.Contains(t))
 			{
-				if (retVal == null) retVal = (UINode)mChildren[t];
-				break;
+				if (retVal == null)
+					retVal = (UINode)mChildren[t];
 			}
 #endif
 			else
@@ -429,8 +473,8 @@ public class UIPanel : MonoBehaviour
 				node = new UINode(t);
 				if (retVal == null) retVal = node;
 				mChildren.Add(t, node);
-				t = t.parent;
 			}
+			t = t.parent;
 		}
 		return retVal;
 	}
@@ -443,7 +487,7 @@ public class UIPanel : MonoBehaviour
 	{
 		if (t != null)
 		{
-#if UNITY_FLASH
+#if USE_SIMPLE_DICTIONARY
 			while (mChildren.Remove(t))
 			{
 #else
@@ -456,6 +500,7 @@ public class UIPanel : MonoBehaviour
 			}
 		}
 	}
+#endif
 
 	/// <summary>
 	/// Add the specified widget to the managed list.
@@ -493,7 +538,7 @@ public class UIPanel : MonoBehaviour
 				}
 			}
 #endif
-
+#if OLD_UNITY
 			UINode node = AddTransform(w.cachedTransform);
 
 			if (node != null)
@@ -506,19 +551,28 @@ public class UIPanel : MonoBehaviour
 					mWidgets.Add(w);
 
 					if (!mChanged.Contains(w.material))
-					{
 						mChanged.Add(w.material);
-						mChangedLastFrame = true;
-					}
+
 					mDepthChanged = true;
 					mWidgetsAdded = true;
 				}
 			}
 			else
 			{
-				Debug.LogError("Unable to find an appropriate root for " + NGUITools.GetHierarchy(w.gameObject) +
-					"\nPlease make sure that there is at least one game object above this widget!", w.gameObject);
+				Debug.LogError("Unable to find an appropriate root for " + NGUITools.GetHierarchy(w.cachedGameObject) +
+					"\nPlease make sure that there is at least one game object above this widget!", w.cachedGameObject);
 			}
+#else
+			if (!mWidgets.Contains(w))
+			{
+				mWidgets.Add(w);
+
+				if (!mChanged.Contains(w.material))
+					mChanged.Add(w.material);
+
+				mDepthChanged = true;
+			}
+#endif
 		}
 	}
 
@@ -530,6 +584,7 @@ public class UIPanel : MonoBehaviour
 	{
 		if (w != null)
 		{
+#if OLD_UNITY
 			// Do we have this node? Mark the widget's material as having been changed
 			UINode pc = GetNode(w.cachedTransform);
 
@@ -537,15 +592,16 @@ public class UIPanel : MonoBehaviour
 			{
 				// Mark the material as having been changed
 				if (pc.visibleFlag == 1 && !mChanged.Contains(w.material))
-				{
 					mChanged.Add(w.material);
-					mChangedLastFrame = true;
-				}
 
 				// Remove this transform
 				RemoveTransform(w.cachedTransform);
 			}
 			mWidgets.Remove(w);
+#else
+			if (w != null && mWidgets.Remove(w) && w.material != null)
+				mChanged.Add(w.material);
+#endif
 		}
 	}
 
@@ -574,7 +630,7 @@ public class UIPanel : MonoBehaviour
 			//go.hideFlags = HideFlags.DontSave;
 			DontDestroyOnLoad(go);
 #endif
-			go.layer = gameObject.layer;
+			go.layer = cachedGameObject.layer;
 			sc = go.AddComponent<UIDrawCall>();
 			sc.material = mat;
 			mDrawCalls.Add(sc);
@@ -583,12 +639,22 @@ public class UIPanel : MonoBehaviour
 	}
 
 	/// <summary>
+	/// Cache components.
+	/// </summary>
+
+	void Awake ()
+	{
+		mGo = gameObject;
+		mTrans = transform;
+	}
+
+	/// <summary>
 	/// Layer is used to ensure that if it changes, widgets get moved as well.
 	/// </summary>
 
 	void Start ()
 	{
-		mLayer = gameObject.layer;
+		mLayer = mGo.layer;
 		UICamera uic = UICamera.FindCameraForLayer(mLayer);
 		mCam = (uic != null) ? uic.cachedCamera : NGUITools.FindCameraForLayer(mLayer);
 	}
@@ -599,8 +665,27 @@ public class UIPanel : MonoBehaviour
 
 	void OnEnable ()
 	{
-		for (int i = 0, imax = mWidgets.size; i < imax; ++i) AddWidget(mWidgets.buffer[i]);
+#if OLD_UNITY
 		mRebuildAll = true;
+
+		for (int i = 0; i < mWidgets.size; ++i)
+		{
+			UIWidget w = mWidgets.buffer[i];
+			AddWidget(w);
+		}
+#else
+		for (int i = 0; i < mWidgets.size; )
+		{
+			UIWidget w = mWidgets.buffer[i];
+
+			if (w != null)
+			{
+				MarkMaterialAsChanged(w.material, true);
+				++i;
+			}
+			else mWidgets.RemoveAt(i);
+		}
+#endif
 	}
 
 	/// <summary>
@@ -616,9 +701,40 @@ public class UIPanel : MonoBehaviour
 		}
 		mDrawCalls.Clear();
 		mChanged.Clear();
+#if OLD_UNITY
 		mChildren.Clear();
+#endif
 	}
 
+	/// <summary>
+	/// Update the world-to-local transform matrix as well as clipping bounds.
+	/// </summary>
+
+	void UpdateTransformMatrix ()
+	{
+		if (mUpdateTime == 0f || mMatrixTime != mUpdateTime)
+		{
+			mMatrixTime = mUpdateTime;
+			worldToLocal = cachedTransform.worldToLocalMatrix;
+
+			if (mClipping != UIDrawCall.Clipping.None)
+			{
+				Vector2 size = new Vector2(mClipRange.z, mClipRange.w);
+
+				if (size.x == 0f) size.x = (mCam == null) ? Screen.width  : mCam.pixelWidth;
+				if (size.y == 0f) size.y = (mCam == null) ? Screen.height : mCam.pixelHeight;
+
+				size *= 0.5f;
+
+				mMin.x = mClipRange.x - size.x;
+				mMin.y = mClipRange.y - size.y;
+				mMax.x = mClipRange.x + size.x;
+				mMax.y = mClipRange.y + size.y;
+			}
+		}
+	}
+
+#if OLD_UNITY
 	// Temporary list used in GetChangeFlag()
 	static BetterList<UINode> mHierarchy = new BetterList<UINode>();
 
@@ -639,7 +755,7 @@ public class UIPanel : MonoBehaviour
 			for (;;)
 			{
 				// Check the parent's flag
-#if UNITY_FLASH
+#if USE_SIMPLE_DICTIONARY
 				if (trans != null && mChildren.TryGetValue(trans, out sub))
 				{
 #else
@@ -673,52 +789,23 @@ public class UIPanel : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Update the world-to-local transform matrix as well as clipping bounds.
-	/// </summary>
-
-	void UpdateTransformMatrix ()
-	{
-		if (mUpdateTime == 0f || mMatrixTime != mUpdateTime)
-		{
-			mMatrixTime = mUpdateTime;
-			mWorldToLocal = cachedTransform.worldToLocalMatrix;
-
-			if (mClipping != UIDrawCall.Clipping.None)
-			{
-				Vector2 size = new Vector2(mClipRange.z, mClipRange.w);
-
-				if (size.x == 0f) size.x = (mCam == null) ? Screen.width  : mCam.pixelWidth;
-				if (size.y == 0f) size.y = (mCam == null) ? Screen.height : mCam.pixelHeight;
-
-				size *= 0.5f;
-
-				mMin.x = mClipRange.x - size.x;
-				mMin.y = mClipRange.y - size.y;
-				mMax.x = mClipRange.x + size.x;
-				mMax.y = mClipRange.y + size.y;
-			}
-		}
-	}
-
-	/// <summary>
 	/// Run through all managed transforms and see if they've changed.
 	/// </summary>
 
 	void UpdateTransforms ()
 	{
-		mChangedLastFrame = false;
 		bool transformsChanged = false;
 		bool shouldCull = false;
 
 #if UNITY_EDITOR
-		shouldCull = (clipping != UIDrawCall.Clipping.None) && (!Application.isPlaying || mUpdateTime > mCullTime);
+		shouldCull = (clipping != UIDrawCall.Clipping.None) && (!Application.isPlaying || (cullWhileDragging || mUpdateTime > mCullTime));
 		if (!Application.isPlaying || !widgetsAreStatic || mWidgetsAdded || shouldCull != mCulled)
 #else
 		shouldCull = (clipping != UIDrawCall.Clipping.None) && (mUpdateTime > mCullTime);
 		if (!widgetsAreStatic || mWidgetsAdded || shouldCull != mCulled)
 #endif
 		{
-#if UNITY_FLASH
+#if USE_SIMPLE_DICTIONARY
 			foreach (KeyValuePair<Transform, UINode> child in mChildren)
 			{
 				UINode node = child.Value;
@@ -765,7 +852,7 @@ public class UIPanel : MonoBehaviour
 
 		if (mCheckVisibility || transformsChanged || mRebuildAll)
 		{
-#if UNITY_FLASH
+#if USE_SIMPLE_DICTIONARY
 			foreach (KeyValuePair<Transform, UINode> child in mChildren)
 			{
 				UINode pc = child.Value;
@@ -800,10 +887,7 @@ public class UIPanel : MonoBehaviour
 
 						// Add this material to the list of changed materials
 						if (!mChanged.Contains(mat))
-						{
 							mChanged.Add(mat);
-							mChangedLastFrame = true;
-						}
 					}
 				}
 			}
@@ -819,7 +903,7 @@ public class UIPanel : MonoBehaviour
 
 	void UpdateWidgets ()
 	{
-#if UNITY_FLASH
+#if USE_SIMPLE_DICTIONARY
 		foreach (KeyValuePair<Transform, UINode> c in mChildren)
 		{
 			UINode pc = c.Value;
@@ -831,18 +915,16 @@ public class UIPanel : MonoBehaviour
 			UIWidget w = pc.widget;
 
 			// If the widget is visible, update it
-			if (pc.visibleFlag == 1 && w != null && w.UpdateGeometry(ref mWorldToLocal, (pc.changeFlag == 1), generateNormals))
+			if (pc.visibleFlag == 1 && w != null && w.UpdateGeometry(this, ref worldToLocal, (pc.changeFlag == 1), generateNormals))
 			{
 				// We will need to refill this buffer
 				if (!mChanged.Contains(w.material))
-				{
 					mChanged.Add(w.material);
-					mChangedLastFrame = true;
-				}
 			}
 			pc.changeFlag = 0;
 		}
 	}
+#endif
 
 	/// <summary>
 	/// Update the clipping rect in the shaders and draw calls' positions.
@@ -871,18 +953,20 @@ public class UIPanel : MonoBehaviour
 		}
 
 		Transform t = cachedTransform;
+		UIDrawCall dc;
+		Transform dt;
 
 		for (int i = 0, imax = mDrawCalls.size; i < imax; ++i)
 		{
-			UIDrawCall dc = mDrawCalls.buffer[i];
+			dc = mDrawCalls.buffer[i];
 			dc.clipping = mClipping;
 			dc.clipRange = range;
 			dc.clipSoftness = mClipSoftness;
-			dc.depthPass = depthPass;
+			dc.depthPass = depthPass && mClipping == UIDrawCall.Clipping.None;
 
 			// Set the draw call's transform to match the panel's.
 			// Note that parenting directly to the panel causes unity to crash as soon as you hit Play.
-			Transform dt = dc.transform;
+			dt = dc.transform;
 			dt.position = t.position;
 			dt.rotation = t.rotation;
 			dt.localScale = t.lossyScale;
@@ -895,35 +979,41 @@ public class UIPanel : MonoBehaviour
 
 	void Fill (Material mat)
 	{
-		// Cleanup deleted widgets
-		for (int i = mWidgets.size; i > 0; ) if (mWidgets[--i] == null) mWidgets.RemoveAt(i);
-
 		// Fill the buffers for the specified material
-		for (int i = 0, imax = mWidgets.size; i < imax; ++i)
+		for (int i = 0; i < mWidgets.size; )
 		{
 			UIWidget w = mWidgets.buffer[i];
 
-			if (w.visibleFlag == 1 && w.material == mat)
+			if (w == null)
 			{
-				UINode node = GetNode(w.cachedTransform);
-
-				if (node != null)
+				mWidgets.RemoveAt(i);
+				continue;
+			}
+#if OLD_UNITY
+			else if (w.visibleFlag == 1 && w.material == mat)
+#else
+			else if (w.material == mat && w.isVisible)
+#endif
+			{
+				if (w.panel == this)
 				{
 					if (generateNormals) w.WriteToBuffers(mVerts, mUvs, mCols, mNorms, mTans);
 					else w.WriteToBuffers(mVerts, mUvs, mCols, null, null);
 				}
 				else
 				{
-					Debug.LogError("No transform found for " + NGUITools.GetHierarchy(w.gameObject), this);
+					mWidgets.RemoveAt(i);
+					continue;
 				}
 			}
+			++i;
 		}
 
 		if (mVerts.size > 0)
 		{
 			// Rebuild the draw call's mesh
 			UIDrawCall dc = GetDrawCall(mat, true);
-			dc.depthPass = depthPass;
+			dc.depthPass = depthPass && mClipping == UIDrawCall.Clipping.None;
 			dc.Set(mVerts, generateNormals ? mNorms : null, generateNormals ? mTans : null, mUvs, mCols);
 		}
 		else
@@ -954,19 +1044,43 @@ public class UIPanel : MonoBehaviour
 	{
 		mUpdateTime = Time.realtimeSinceStartup;
 		UpdateTransformMatrix();
+#if OLD_UNITY
 		UpdateTransforms();
-
+#endif
 		// Always move widgets to the panel's layer
-		if (mLayer != gameObject.layer)
+		if (mLayer != cachedGameObject.layer)
 		{
-			mLayer = gameObject.layer;
+			mLayer = mGo.layer;
 			UICamera uic = UICamera.FindCameraForLayer(mLayer);
 			mCam = (uic != null) ? uic.cachedCamera : NGUITools.FindCameraForLayer(mLayer);
 			SetChildLayer(cachedTransform, mLayer);
 			for (int i = 0, imax = drawCalls.size; i < imax; ++i) mDrawCalls.buffer[i].gameObject.layer = mLayer;
 		}
 
+#if OLD_UNITY
 		UpdateWidgets();
+#else
+#if UNITY_EDITOR
+		bool forceVisible = cullWhileDragging ? false : (clipping == UIDrawCall.Clipping.None) || (Application.isPlaying && mCullTime > mUpdateTime);
+#else
+		bool forceVisible = cullWhileDragging ? false : (clipping == UIDrawCall.Clipping.None) || (mCullTime > mUpdateTime);
+#endif
+		// Update all widgets
+		for (int i = 0, imax = mWidgets.size; i < imax; ++i)
+		{
+			UIWidget w = mWidgets[i];
+
+			// If the widget is visible, update it
+			if (w.UpdateGeometry(this, forceVisible))
+			{
+				// We will need to refill this buffer
+				if (!mChanged.Contains(w.material))
+					 mChanged.Add(w.material);
+			}
+		}
+#endif
+		// Inform the changed event listeners
+		if (mChanged.size != 0 && onChange != null) onChange();
 
 		// If the depth has changed, we need to re-sort the widgets
 		if (mDepthChanged)
@@ -981,8 +1095,9 @@ public class UIPanel : MonoBehaviour
 		// Update the clipping rects
 		UpdateDrawcalls();
 		mChanged.Clear();
+#if OLD_UNITY
 		mRebuildAll = false;
-
+#endif
 #if UNITY_EDITOR
 		mScreenSize = new Vector2(Screen.width, Screen.height);
 #endif
@@ -1020,14 +1135,14 @@ public class UIPanel : MonoBehaviour
 			GameObject go = UnityEditor.Selection.activeGameObject;
 			bool selected = (go != null) && (NGUITools.FindInParents<UIPanel>(go) == this);
 
-			if (selected || clip)
+			if (selected || clip || (mCam != null && mCam.isOrthoGraphic))
 			{
 				if (size.x == 0f) size.x = mScreenSize.x;
 				if (size.y == 0f) size.y = mScreenSize.y;
 
 				if (!clip)
 				{
-					UIRoot root = NGUITools.FindInParents<UIRoot>(gameObject);
+					UIRoot root = NGUITools.FindInParents<UIRoot>(cachedGameObject);
 					if (root != null) size *= root.GetPixelSizeAdjustment(mScreenHeight);
 				}
 
@@ -1035,9 +1150,24 @@ public class UIPanel : MonoBehaviour
 
 				if (t != null)
 				{
+					Vector3 pos = new Vector2(mClipRange.x, mClipRange.y);
+
 					Gizmos.matrix = t.localToWorldMatrix;
-					Gizmos.color = clip ? Color.magenta : new Color(0.5f, 0f, 0.5f);
-					Gizmos.DrawWireCube(new Vector2(mClipRange.x, mClipRange.y), size);
+
+					if (go != cachedGameObject)
+					{
+						Gizmos.color = clip ? Color.magenta : new Color(0.5f, 0f, 0.5f);
+						Gizmos.DrawWireCube(pos, size);
+
+						// Make the panel selectable
+						//Gizmos.color = Color.clear;
+						//Gizmos.DrawCube(pos, size);
+					}
+					else
+					{
+						Gizmos.color = Color.green;
+						Gizmos.DrawWireCube(pos, size);
+					}
 				}
 			}
 		}
@@ -1107,7 +1237,7 @@ public class UIPanel : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Helper function that recursively sets all childrens' game objects layers to the specified value, stopping when it hits another UIPanel.
+	/// Helper function that recursively sets all children with widgets' game objects layers to the specified value, stopping when it hits another UIPanel.
 	/// </summary>
 
 	static void SetChildLayer (Transform t, int layer)
@@ -1118,7 +1248,10 @@ public class UIPanel : MonoBehaviour
 
 			if (child.GetComponent<UIPanel>() == null)
 			{
-				child.gameObject.layer = layer;
+				if (child.GetComponent<UIWidget>() != null)
+				{
+					child.gameObject.layer = layer;
+				}					
 				SetChildLayer(child, layer);
 			}
 		}
@@ -1144,7 +1277,7 @@ public class UIPanel : MonoBehaviour
 		if (createIfMissing && panel == null && trans != origin)
 		{
 			panel = trans.gameObject.AddComponent<UIPanel>();
-			SetChildLayer(panel.cachedTransform, panel.gameObject.layer);
+			SetChildLayer(panel.cachedTransform, panel.cachedGameObject.layer);
 		}
 		return panel;
 	}

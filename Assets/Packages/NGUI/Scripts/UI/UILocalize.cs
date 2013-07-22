@@ -1,6 +1,6 @@
 //----------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2012 Tasharen Entertainment
+// Copyright © 2011-2013 Tasharen Entertainment
 //----------------------------------------------
 
 using UnityEngine;
@@ -58,8 +58,8 @@ public class UILocalize : MonoBehaviour
 		// If no localization key has been specified, use the label's text as the key
 		if (string.IsNullOrEmpty(mLanguage) && string.IsNullOrEmpty(key) && lbl != null) key = lbl.text;
 
-		// If we still don't have a key, use the widget's name
-		string val = string.IsNullOrEmpty(key) ? loc.Get(w.name) : loc.Get(key);
+		// If we still don't have a key, leave the value as blank
+		string val = string.IsNullOrEmpty(key) ? "" : loc.Get(key);
 
 		if (lbl != null)
 		{

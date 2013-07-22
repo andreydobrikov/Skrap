@@ -14,4 +14,13 @@ MonoBehaviour:
   ServerAddress: app.exitgamescloud.com
   ServerPort: 5055
   AppID: 25259992-f224-4096-bb92-703f93a1a4b9
+  RpcList:
+  - InstantiateRpc
+  - OnAwakeRPC
+  - DestroyRpc
+  - NetworkApplyDamageToEnemy
+  - UpdateReadyProgress
+  - LoadGame
+  - UpdateReady
+  - NetworkApplyDamageToPlayer
   DisableAutoOpenWizard: 1

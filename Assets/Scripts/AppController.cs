@@ -37,7 +37,16 @@ public class AppController : MonoBehaviour
 	}
 
 	public List<UISlider> playerLoadingBars = new List<UISlider>();
-
+	
+	void Awake()
+	{
+		//if(Application.internetReachability == NetworkReachability.NotReachable)
+		{
+			PhotonNetwork.offlineMode = true;	
+		}
+	}
+		
+	
 	void Start () 
 	{
 		DontDestroyOnLoad(gameObject);

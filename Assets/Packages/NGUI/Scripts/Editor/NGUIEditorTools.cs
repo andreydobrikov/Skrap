@@ -1,6 +1,6 @@
 //----------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2012 Tasharen Entertainment
+// Copyright © 2011-2013 Tasharen Entertainment
 //----------------------------------------------
 
 using UnityEditor;
@@ -321,26 +321,6 @@ public class NGUIEditorTools
 	}
 
 	/// <summary>
-	/// Draw a simple box outline for the entire line.
-	/// </summary>
-
-	static public void HighlightLine (Color c)
-	{
-		Rect rect = GUILayoutUtility.GetRect(Screen.width - 16f, 22f);
-		GUILayout.Space(-23f);
-		c.a *= 0.3f;
-		GUI.color = c;
-		GUI.DrawTexture(rect, gradientTexture);
-		c.r *= 0.5f;
-		c.g *= 0.5f;
-		c.b *= 0.5f;
-		GUI.color = c;
-		GUI.DrawTexture(new Rect(rect.x, rect.y + 1f, rect.width, 1f), blankTexture);
-		GUI.DrawTexture(new Rect(rect.x, rect.y + rect.height - 1f, rect.width, 1f), blankTexture);
-		GUI.color = Color.white;
-	}
-
-	/// <summary>
 	/// Convenience function that displays a list of sprites and returns the selected value.
 	/// </summary>
 
@@ -412,7 +392,13 @@ public class NGUIEditorTools
 	/// Helper function that returns the selected root object.
 	/// </summary>
 
-	static public GameObject SelectedRoot ()
+	static public GameObject SelectedRoot () { return SelectedRoot(false); }
+
+	/// <summary>
+	/// Helper function that returns the selected root object.
+	/// </summary>
+
+	static public GameObject SelectedRoot (bool createIfMissing)
 	{
 		GameObject go = Selection.activeGameObject;
 
@@ -425,7 +411,7 @@ public class NGUIEditorTools
 		// No selection? Try to find the root automatically
 		if (p == null)
 		{
-			UIPanel[] panels = GameObject.FindSceneObjectsOfType(typeof(UIPanel)) as UIPanel[];
+			UIPanel[] panels = NGUITools.FindActive<UIPanel>();
 			if (panels.Length > 0) go = panels[0].gameObject;
 		}
 
@@ -443,6 +429,19 @@ public class NGUIEditorTools
 				else go = t.gameObject;
 			}
 		}
+
+		if (createIfMissing && go == null)
+		{
+			// No object specified -- find the first panel
+			if (go == null)
+			{
+				UIPanel panel = GameObject.FindObjectOfType(typeof(UIPanel)) as UIPanel;
+				if (panel != null) go = panel.gameObject;
+			}
+
+			// No UI present -- create a new one
+			if (go == null) go = UICreateNewUIWizard.CreateNewUI();
+		}
 		return go;
 	}
 
@@ -457,11 +456,8 @@ public class NGUIEditorTools
 		if (root.transform != null)
 		{
 			// Check if the selected object is a prefab instance and display a warning
-#if UNITY_3_4
-			PrefabType type = EditorUtility.GetPrefabType(root);
-#else
 			PrefabType type = PrefabUtility.GetPrefabType(root);
-#endif
+
 			if (type == PrefabType.PrefabInstance)
 			{
 				return EditorUtility.DisplayDialog("Losing prefab",
@@ -502,7 +498,7 @@ public class NGUIEditorTools
 			settings.npotScale = TextureImporterNPOTScale.None;
 
 			ti.SetTextureSettings(settings);
-			AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceUpdate);
+			AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceUpdate | ImportAssetOptions.ForceSynchronousImport);
 		}
 		return true;
 	}
@@ -536,7 +532,7 @@ public class NGUIEditorTools
 			settings.npotScale = TextureImporterNPOTScale.ToNearest;
 
 			ti.SetTextureSettings(settings);
-			AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceUpdate);
+			AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceUpdate | ImportAssetOptions.ForceSynchronousImport);
 		}
 		return true;
 	}
@@ -551,7 +547,11 @@ public class NGUIEditorTools
 		{
 			if (forInput) { if (!MakeTextureReadable(path, force)) return null; }
 			else if (!MakeTextureAnAtlas(path, force)) return null;
-			return AssetDatabase.LoadAssetAtPath(path, typeof(Texture2D)) as Texture2D;
+			//return AssetDatabase.LoadAssetAtPath(path, typeof(Texture2D)) as Texture2D;
+
+			Texture2D tex = AssetDatabase.LoadAssetAtPath(path, typeof(Texture2D)) as Texture2D;
+			AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
+			return tex;
 		}
 		return null;
 	}
@@ -692,7 +692,6 @@ public class NGUIEditorTools
 
 	/// <summary>
 	/// Create an undo point for the specified objects.
-	/// This action also marks the object as dirty so prefabs work correctly in 3.5.0 (work-around for a bug in Unity).
 	/// </summary>
 
 	static public void RegisterUndo (string name, params Object[] objects)
@@ -888,6 +887,23 @@ public class NGUIEditorTools
 	}
 
 	/// <summary>
+	/// Draw a simple sprite selection button.
+	/// </summary>
+
+	static public bool SimpleSpriteField (UIAtlas atlas, string spriteName, SpriteSelector.Callback callback, params GUILayoutOption[] options)
+	{
+		if (atlas.GetSprite(spriteName) == null)
+			spriteName = "";
+
+		if (GUILayout.Button(spriteName, "DropDown", options))
+		{
+			SpriteSelector.Show(atlas, spriteName, callback);
+			return true;
+		}
+		return false;
+	}
+
+	/// <summary>
 	/// Convenience function that displays a list of sprites and returns the selected value.
 	/// </summary>
 
@@ -927,12 +943,14 @@ public class NGUIEditorTools
 			}
 			else
 			{
-				string[] list = new string[] { spriteName, "...Edit" };
-				int selection = EditorGUILayout.Popup(0, list, "DropDownButton");
+				GUILayout.BeginHorizontal();
+				GUILayout.Label(spriteName, "HelpBox", GUILayout.Height(18f));
+				GUILayout.Space(18f);
+				GUILayout.EndHorizontal();
 
-				if (selection == 1)
+				if (GUILayout.Button("Edit", GUILayout.Width(40f)))
 				{
-					EditorPrefs.SetString("NGUI Selected Sprite", spriteName);
+					NGUISettings.selectedSprite = spriteName;
 					Select(atlas.gameObject);
 				}
 			}
@@ -968,4 +986,49 @@ public class NGUIEditorTools
 	/// </summary>
 
 	static public GameObject previousSelection { get { return mPrevious; } }
+
+	/// <summary>
+	/// Helper function that checks to see if the scale is uniform.
+	/// </summary>
+
+	static public bool IsUniform (Vector3 scale)
+	{
+		return Mathf.Approximately(scale.x, scale.y) && Mathf.Approximately(scale.x, scale.z);
+	}
+
+	/// <summary>
+	/// Check to see if the specified game object has a uniform scale.
+	/// </summary>
+
+	static public bool IsUniform (GameObject go)
+	{
+		if (go == null) return true;
+
+		if (go.GetComponent<UIWidget>() != null)
+		{
+			Transform parent = go.transform.parent;
+			return parent == null || IsUniform(parent.gameObject);
+		}
+		return IsUniform(go.transform.lossyScale);
+	}
+
+	/// <summary>
+	/// Fix uniform scaling of the specified object.
+	/// </summary>
+
+	static public void FixUniform (GameObject go)
+	{
+		Transform t = go.transform;
+
+		while (t != null && t.gameObject.GetComponent<UIRoot>() == null)
+		{
+			if (!NGUIEditorTools.IsUniform(t.localScale))
+			{
+				Undo.RegisterUndo(t, "Uniform scaling fix");
+				t.localScale = Vector3.one;
+				EditorUtility.SetDirty(t);
+			}
+			t = t.parent;
+		}
+	}
 }

@@ -1,6 +1,6 @@
 //----------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2012 Tasharen Entertainment
+// Copyright © 2011-2013 Tasharen Entertainment
 //----------------------------------------------
 
 using UnityEngine;
@@ -38,7 +38,7 @@ public class TweenOrthoSize : UITweener
 	/// Perform the tween.
 	/// </summary>
 
-	override protected void OnUpdate (float factor, bool isFinished)
+	protected override void OnUpdate (float factor, bool isFinished)
 	{
 		cachedCamera.orthographicSize = from * (1f - factor) + to * factor;
 	}

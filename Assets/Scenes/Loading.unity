@@ -119,6 +119,10 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 2f2473f73b9ca724f9080d6d76009ea2, type: 2}
   mSpriteName: Dark
   mFillCenter: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
 --- !u!1 &974018003
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,7 +209,6 @@ MonoBehaviour:
   foreground: {fileID: 1389848838}
   thumb: {fileID: 0}
   direction: 0
-  fullSize: {x: 200, y: 30}
   eventReceiver: {fileID: 0}
   functionName: OnSliderChange
   numberOfSteps: 0
@@ -255,6 +258,10 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 2f2473f73b9ca724f9080d6d76009ea2, type: 2}
   mSpriteName: Light
   mFillCenter: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
 --- !u!1 &1394951846
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,6 +423,7 @@ MonoBehaviour:
   panelContainer: {fileID: 0}
   side: 8
   halfPixelOffset: 1
+  runOnlyOnce: 0
   relativeOffset: {x: 0, y: 0}
 --- !u!4 &1830605540
 Transform:
@@ -424,7 +432,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1830605538}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.5, y: .5, z: 0}
+  m_LocalPosition: {x: 0, y: .5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1909829199}
@@ -533,7 +541,7 @@ Transform:
   m_GameObject: {fileID: 1906592870}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: .00416666688, y: .00416666688, z: .00416666688}
+  m_LocalScale: {x: .00438596494, y: .00438596494, z: .00438596494}
   m_Children:
   - {fileID: 1394951848}
   m_Father: {fileID: 0}
@@ -611,6 +619,24 @@ MonoBehaviour:
   generateNormals: 0
   depthPass: 0
   widgetsAreStatic: 0
+  cullWhileDragging: 0
+  worldToLocal:
+    e00: 228
+    e01: 0
+    e02: 0
+    e03: 0
+    e10: 0
+    e11: 228
+    e12: 0
+    e13: -.5
+    e20: 0
+    e21: 0
+    e22: 228
+    e23: 0
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 1
   mAlpha: 1
   mDebugInfo: 1
   mClipping: 0
@@ -669,5 +695,6 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
   mLineWidth: 0
   mMultiline: 1
