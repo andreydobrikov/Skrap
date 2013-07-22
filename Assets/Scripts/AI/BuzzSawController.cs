@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class BuzzSawAnimationController : Enemy
+public class BuzzSawController : Enemy
 {
 	int directionParamID;
 	int speedParamID;
@@ -9,8 +9,8 @@ public class BuzzSawAnimationController : Enemy
 
 	protected override void InitEnemy()
 	{
-		animator = transform.Find("Graphics/mine_bot").GetComponent<Animator>();
-
+		//animator = transform.Find("Graphics/DebugBot").GetComponent<Animator>();
+		animator = GetComponent<Animator>();
 		directionParamID = Animator.StringToHash("Direction");
 		speedParamID = Animator.StringToHash("Speed");
 		attackParamID = Animator.StringToHash("Attack");
@@ -19,7 +19,7 @@ public class BuzzSawAnimationController : Enemy
 
 	protected override void UpdateAnimation()
 	{
-		if(photonView.isMine)
+		//if(photonView.isMine)
 		{
 			//Calculating the move direction in degrees, from -180 to 180
 			// the vector that we want to measure an angle from
@@ -50,16 +50,18 @@ public class BuzzSawAnimationController : Enemy
 	void Update()
 	{
 		//Make sure the network and ai has been setup before doing anything
-		if (photonView != null)
+		//if (photonView != null)
 			UpdateAnimation();
 		Debug.Log("Attack status is: " + animator.GetBool(attackParamID));
 	}
 
 	public override void Attack()
 	{
+		Debug.Log("Overriden attack called!");
 		var target = GetComponent<SteerForPursuit>().Quarry;
 		animator.MatchTarget(target.position, target.transform.rotation, AvatarTarget.Root, new MatchTargetWeightMask(Vector3.zero, 1.0f), 0.1f);
 		animator.SetBool(attackParamID, true);
+		target.GetComponent<PlayerCharacter>().photonView.RPC("NetworkApplyDamageToPlayer", PhotonTargets.All, meleeDamage);
 	}
 
 	public override void FinishAttack()

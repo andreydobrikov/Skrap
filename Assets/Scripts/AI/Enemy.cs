@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
 	public float meleeDamage;
 	public float timeBetweenAttacks;
 	protected Animator animator;
-	protected AutonomousVehicle vehicle;
+	public AutonomousVehicle vehicle;
 
 	void Start()
 	{
@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour
 		//Sets itself up for networking
 		if (!photonView.isMine)
 		{
-			DisableAI();
+			//DisableAI();
 		}
 
 		health = _health;
@@ -46,7 +46,7 @@ public class Enemy : MonoBehaviour
 		{
 			Destroy(steerer);
 		}
-		
+		vehicle.RefreshSteeringList();
 	}
 
 	public void ApplyDamage(float damageAmount)
@@ -68,7 +68,7 @@ public class Enemy : MonoBehaviour
 
 	public virtual void Attack()
 	{
-
+		Debug.Log("Base attack called!");
 	}
 
 	public virtual void FinishAttack()
