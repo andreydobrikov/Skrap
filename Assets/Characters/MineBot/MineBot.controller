@@ -81,35 +81,35 @@ BlendTree:
   m_PrefabInternal: {fileID: 0}
   m_Name: Blend Tree
   m_Childs:
-  - m_Motion: {fileID: 7400000, guid: a76d23778b9f0df4e93c3077d5bad0f6, type: 3}
+  - m_Motion: {fileID: 7400004, guid: bbd3f56e88723da40a737f39aa982357, type: 3}
     m_Threshold: -180
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_IsAnim: 1
     m_Mirror: 0
-  - m_Motion: {fileID: 7400000, guid: 16ecde8355c8e0244835f859f9a4c150, type: 3}
+  - m_Motion: {fileID: 7400006, guid: bbd3f56e88723da40a737f39aa982357, type: 3}
     m_Threshold: -90
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_IsAnim: 1
     m_Mirror: 0
-  - m_Motion: {fileID: 7400000, guid: dc7236cf37de9a84d9c98891f8cb083d, type: 3}
+  - m_Motion: {fileID: 7400002, guid: bbd3f56e88723da40a737f39aa982357, type: 3}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_IsAnim: 1
     m_Mirror: 0
-  - m_Motion: {fileID: 7400000, guid: 3ae44eef4af3c5343a81fca3fa01543a, type: 3}
+  - m_Motion: {fileID: 7400008, guid: bbd3f56e88723da40a737f39aa982357, type: 3}
     m_Threshold: 90
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_IsAnim: 1
     m_Mirror: 0
-  - m_Motion: {fileID: 7400000, guid: a76d23778b9f0df4e93c3077d5bad0f6, type: 3}
+  - m_Motion: {fileID: 7400004, guid: bbd3f56e88723da40a737f39aa982357, type: 3}
     m_Threshold: 180
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -252,10 +252,10 @@ State:
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: b3ca66dd06e5eb241b12e1f3b5f13ed1, type: 3}
+  - {fileID: 7400000, guid: bbd3f56e88723da40a737f39aa982357, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 264, y: 24, z: 0}
-  m_IKOnFeet: 1
+  m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
 --- !u!1102 &110211125
@@ -267,7 +267,7 @@ State:
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: 3176693b8d6e53d429ccf97794e09f81, type: 3}
+  - {fileID: 7400010, guid: bbd3f56e88723da40a737f39aa982357, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 420, y: 156, z: 0}
   m_IKOnFeet: 1

@@ -17,7 +17,7 @@ public class PlayerCharacter : MonoBehaviour
 	[SerializeField]
 	private float _health;
 
-	private PhotonView photonView;
+	public PhotonView photonView;
 
 	public int level
 	{
